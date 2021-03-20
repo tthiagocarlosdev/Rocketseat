@@ -1,0 +1,137 @@
+<h1>1. Abertura</h1>
+<p>O que vamos Estudar?</p>
+<p>o que é o HTML, conceitos essenciais, tags, atributos, alinhamentos, hierarquia de tags, elementos , links, navegação entre diretórios etc.</p>
+
+<h1>2. Instalando plugin de preview HTML</h1>
+<ol>
+    <li>clique em "extençoes";</li>
+    <li>Na caixa "search extensions..", digite "HTML preview";</li>
+    <li>Clique na primeira opção e instale;</li>
+</ol>
+
+<h1>3. O que é HTML?</h1>
+<p>Hypertext Markup Language</p>
+<p>Não é uma linguagem, mas um jeito de escrever.</p>
+
+<h1>4. Comentários</h1>
+<p>Para inserir comentários basta digitar: "<!-- -->" e digitar o seu comentário entre os traços, como no exemplo abaixo.</p>
+<!--
+    Aqui viŕar comentário qualquer....
+    Hypertext Markup Language
+    HT = hypertext: hiper texto
+    M = mark
+-->
+
+<h1>5. Anatomia das Tags</h1>
+<ul>
+    <li>Abertura de tag: "< nome da tag >" (tudo junto)</li>
+    <li>Fechamento de tag: "< nome da tag >" (tudo junto) </li>
+    <li>Conteúdo: o que está dentro da tag</li>
+    <li>Elementos: a tag + seu conteúdo, exemplo:</li>
+    <!--
+        <h2>
+            O título
+        </h2>
+    -->
+    <li>Elementos vazios:</li>
+    <img src="" alt="">
+    <input type="text">
+</ul>
+ 
+<h1>6. Atributos</h1>
+<p>Atributos HTML:
+    <br>- informações extras e configurações.
+</p>
+<img src="image.png" alt="texto">
+
+<p>Atributos Booleanos:
+    <br>- Não precisam de conteúdo!
+</p>
+<input type="text">
+
+<p>Aspas:<br>
+    - omissão, simples e duplas. <br>
+    - usar sempre aspas duplas.
+</p>
+
+<h1>7. Atributos Globais</h1>
+<p>
+    Atributos globais mais utilizados: <br>
+    - class, contenteditable, data-*, hidden, id, style, tabindex, title. 
+</p>
+    <div class="carrinho" contenteditable="true" tabindex="1">
+        conteúdo
+    </div>
+
+    <div class="carrinho" data-id="" id="cart2" style="color: red;" tabindex="2">
+        conteúdo
+    </div>
+
+    <div class="carrinho" hidden tabindex="3">
+        conteúdo
+    </div>
+<p> A classe é usada para aplicar estilo no CSS e acesso no JAVASCRIPT <br>
+O hidden esconde uma tag. <br>
+tabindex é usado para realizar a navegação com a tecla TAB. <br>
+title - definir um título.
+</p>
+    <div title="Definir um título">
+        título
+    </div>
+<p>Para mais atributos, acesse, &lt;developer.mozilla.org &gt; e procure por atributos globais.</p>
+
+<h1>8. Aninhamento Hierarquia</h1>
+<p>Aninhamento de tags - colocar uma tag dentro de outra. <br>
+    - Hierarquia, fluxo e posicionamento dos elementos.
+</p>
+<p>
+    Vou <em>escrever</em> um parágrafo
+</p>
+
+<h1>9. Praticando</h1>
+<p>
+    Vamos praticar: <br>
+    Escrever 2 parágrafos, dando ênfase e importância para algumas palavras, e adicione um link de saiba mais. <br>
+    - use a tag em para ênfase; <br>
+    - use a tag strong para importância; <br>
+    - o link pode levar para o google.
+</p>
+
+
+    <p>
+        Lorem, ipsum dolor sit amet <em>consectetur</em> adipisicing elit. Quo aut <strong>repudiandae</strong> nam eaque necessitatibus at id. <strong>Possimus</strong> eaque aliquam <em>tempora</em> minus impedit expedita voluptas suscipit odit <em>distinctio</em>. Deserunt, impedit tenetur.
+    </p>
+    <p>
+        <em>Lorem ipsum dolor sit amet consectetur adipisicing elit</em>. <strong>Quidem numquam</strong> harum quia culpa voluptate vel unde ullam incidunt deleniti cumque nulla, <strong>doloribus illo</strong>, libero fugiat quibusdam porro voluptatum ex? Nihil.
+    </p>
+    <a href="https://www.google.com/">Saiba mais</a>
+
+
+<h1>10. Caracteres Reservados</h1>
+<p>Conteúdo do texto e caracteres reservados.</p>
+<p>
+    "br" - tag usada para quebrar linha; <br>
+    "&nbsp" - tag usada para dar espaço; <br>
+    "&lt" - para inserir o sinal de menor que; <br>
+    "&gt" - para inserir o sinal de maior que; <br>
+    "&amp" - para colocar o &; <br>
+    "&quot" - Para colocar aspas; <br>
+    "&apos" - aspa simples ''; <br>
+
+</p>
+
+<h1>11. Anatomia de um documento HTML</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<h1>12. Criando Projetos</h1>
