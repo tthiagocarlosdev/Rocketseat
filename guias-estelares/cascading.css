@@ -1,9 +1,15 @@
-h1{
+#my-title, #my-title strong{
+	color: gray;
+}
+.title{
 	color: red;
 }
-h1{
+body h1{
 	font-size: 40px;
 }
 h1{
-	color: blue;
+	color: blue !important;
+}
+* {
+	color: green;
 }
