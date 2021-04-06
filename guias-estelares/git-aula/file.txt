@@ -1,2 +1,6 @@
 texto
 lorem ipsum
+aula pŕatica
+alterar arquivo para prática de aula.
+ok
+
