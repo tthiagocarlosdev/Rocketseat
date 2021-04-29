@@ -1,15 +1,11 @@
-/*
-* Array (vetores)
-    * Uma lista
-    * Agrupamento de dado
-    
-    ["thiago", 33]
-*/
+//Object
 
-console.log(["Thiago", 33])
-console.log([
-    "leite",
-    "ovos",
-    2,
-    3,
-])
+const person={
+    name: 'thiago',
+    age: 33,
+    weight: 92,
+    isAdmin: true
+}
+
+console.log(person)
+console.log(`o ${person.name} tem ${person.age} anos e é ${person.isAdmin}`)
