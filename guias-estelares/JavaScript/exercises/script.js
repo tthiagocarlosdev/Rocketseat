@@ -1,34 +1,37 @@
-/* ### Distema de gastos familiar
-Crie um objeto que possuiŕa 2 propiedades, ambas do tipo array:
-    * receitas: []
-    * despesas: []
-Agora, crie uma função que irá calcular o total de receitas e despesas e irá mostrar uma mensagem se a família está com saldo positivo ou negativo, seguido do valor do saldo.
+/*### Celsius em fahrenheit
+Crie uma funçâo que receba uma string em celcius ou fahrenheit e faça a transformação de uma unidade para outra.
+C = (F-32) * 5/9
+F = C * 9/5 + 32
 */
-let gastoFamiliar = {
-    receita: [salario=1000, rendaExtra=2000,],
-    despesa: [agua=100.59, aluguel=1000.43, luz=500.37, internet=80],
+/*
+let currentTemperature = "20"
+
+function fahrenheit(celsiusTemperature){
+    let temperatureF = ((celsiusTemperature * (9/5)) + 32)    
+    return temperatureF
 }
-// receitas
-function sum(array){
-    let total = 0;
-    for(let value of array){
-        total += value
-    }
-    return total
+function celsius(fahrenheitTemperature){
+    let temperatureCelsius = ((fahrenheitTemperature - 32) * (5/9))
+    return temperatureCelsius
 }
 
+console.log('Sua temperatura em Fahrenheit é '+fahrenheit(currentTemperature).toFixed(2)+' graus.')
+console.log('Sua temperatura em Celsius e '+celsius(currentTemperature).toFixed(2)+' graus.')
+*/
+// transformDegree('50F')
+function transformDegree(degree){
+    const celsiusExists = degree.toUpperCase().includes('C')
+    const fahrenheitExists = degree.toUpperCase().includes('F')
 
-//resultado final e status saldo
-function calculateBalance(){
-    const totalReceita = sum(gastoFamiliar.receita)
-    const totalDespesa = sum(gastoFamiliar.despesa)
-    
-    const balance = totalReceita - totalDespesa
-    
-    saldo = "Saldo negativo";
-    if(balance >=0){
-        saldo = "Saldo positivo"
+    if(!celsiusExists && !fahrenheitExists){
+        throw new Error('Grau não identificado')
     }
-    console.log(saldo+" - R$"+balance.toFixed(2))
 }
-calculateBalance()
+// normal fluxo
+const fahrenheit => ((fahrenheit-32) * (5/9))
+
+try{
+    transformDegree('50c')
+} catch (erro){
+    console.log(error)
+}

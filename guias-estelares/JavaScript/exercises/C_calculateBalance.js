@@ -25,10 +25,10 @@ function calculateBalance(){
     
     const balance = totalReceita - totalDespesa
     
-    saldo = "Saldo negativo";
+    saldo = "Negativo";
     if(balance >=0){
-        saldo = "Saldo positivo"
+        saldo = "Positivo"
     }
-    console.log(saldo+" - R$"+balance.toFixed(2))
+    console.log('Seu saldo é '+saldo+' - R$ '+balance.toFixed(2))
 }
 calculateBalance()
