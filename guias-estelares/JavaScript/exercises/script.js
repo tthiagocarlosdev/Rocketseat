@@ -3,35 +3,42 @@ Crie uma funçâo que receba uma string em celcius ou fahrenheit e faça a trans
 C = (F-32) * 5/9
 F = C * 9/5 + 32
 */
-/*
-let currentTemperature = "20"
 
-function fahrenheit(celsiusTemperature){
-    let temperatureF = ((celsiusTemperature * (9/5)) + 32)    
-    return temperatureF
-}
-function celsius(fahrenheitTemperature){
-    let temperatureCelsius = ((fahrenheitTemperature - 32) * (5/9))
-    return temperatureCelsius
-}
 
-console.log('Sua temperatura em Fahrenheit é '+fahrenheit(currentTemperature).toFixed(2)+' graus.')
-console.log('Sua temperatura em Celsius e '+celsius(currentTemperature).toFixed(2)+' graus.')
-*/
+
 // transformDegree('50F')
 function transformDegree(degree){
+    degree = degree.replace(/[a-z]/i, '')
     const celsiusExists = degree.toUpperCase().includes('C')
     const fahrenheitExists = degree.toUpperCase().includes('F')
 
+    // fluxo de erro
     if(!celsiusExists && !fahrenheitExists){
         throw new Error('Grau não identificado')
     }
+    
+    // fluxo ideal, F -> C
+    let updatedDegree = Number(degree.toUpperCase().replace('F',""));
+    let formula = (fahrenheit) => ((fahrenheit-32) * (5/9))
+    let degreeSign = 'C'
+    
+    // fluxo alternativo, C -> F
+    if(celsiusExists){
+        updatedDegree = Number(degree.toUpperCase().replace('C',""));
+        formula = (celsius) => ((celsius * (9/5)) + 32)
+        degreeSign = 'F'
+    }
+
+    return formula(updatedDegree) + degreeSign
 }
-// normal fluxo
-const fahrenheit => ((fahrenheit-32) * (5/9))
+
 
 try{
-    transformDegree('50c')
-} catch (erro){
+    console.log(transformDegree('c10c'))
+    console.log(transformDegree('f50f'))
+    transformDegree('50z')
+} catch (error){
     console.log(error)
 }
+
+
