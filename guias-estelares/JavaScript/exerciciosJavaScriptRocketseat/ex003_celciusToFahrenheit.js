@@ -8,20 +8,21 @@ function header(){
 function celciusOrFahrenheit(temperatura){
     let celcius = temperatura.toUpperCase().includes('C')
     let fahrenheit = temperatura.toUpperCase().includes('F')
-    // expressão regular
-    let f = /F/gi
-    let c = /C/gi
+    let erro = celcius && fahrenheit || !celcius && !fahrenheit
+    // expressão regular para extrair apenas números
+    let regexFahrenheit = /[^0-9]/g
+    let regexCelcius = /[^0-9]/g
 
-    if(fahrenheit){
-        tempClear = Number(temperatura.toUpperCase().replace(f, ''))
-        temperaturaEmCelcius = (((tempClear - 32) * 5) / 9)
-        return `Temperatura: ${temperaturaEmCelcius.toFixed(2)}°C`
+    if(erro){
+        return 'Grau não identificado!'
     } else if(celcius){
-        tempClear = Number(temperatura.toUpperCase().replace(c, ''))
+        tempClear = Number(temperatura.replace(regexCelcius, ''))
         temperaturaEmFahrenheit = (((tempClear * 9) / 5) + 32)
         return `Temperatura: ${temperaturaEmFahrenheit.toFixed(2)}°F`
-    } else {
-        return 'Valor inválido!'
+    } else if(fahrenheit){
+        tempClear = Number(temperatura.replace(regexFahrenheit, ''))
+        temperaturaEmCelcius = (((tempClear - 32) * 5) / 9)
+        return `Temperatura: ${temperaturaEmCelcius.toFixed(2)}°C`
     }
 }
 
