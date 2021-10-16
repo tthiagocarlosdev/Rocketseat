@@ -10,6 +10,7 @@ function header(){
 function menu(){
     console.log('Menu')
     console.log('[1] nº Categorias')
+    console.log('[2] nº de Livros p/ Categoria')
     return input.question('')
 }
 
@@ -57,6 +58,20 @@ const booksByCategory = [
         ],
     },
 ]
+const quantidadeCategorias = booksByCategory.length
+let quantlivrosTotal = 0
+let quantAutoresTotal = 0
+
+for(i = 0; i < quantidadeCategorias; i++){
+    quantlivrosTotal += booksByCategory[i].books.length
+}
+console.log(`Nº Livros Totais: ${quantlivrosTotal}`)
+
+for(i = 0; i < quantidadeCategorias; i++){
+    quantAutoresTotal += booksByCategory[i].books[i].author.length
+}
+console.log(`Nº Autores Totais: ${quantAutoresTotal}`)
+
 /*
 do {
     header()
@@ -64,15 +79,18 @@ do {
     console.clear()
     header()
     if(escolha == 1){
-        console.log(`Quantidade de Categorias: ${booksByCategory.length}`)
+        console.log(`Quantidade de Categorias: ${quantidadeCategorias}`)
+    } else if (escolha == 2){
+        for(i = 0; i < quantidadeCategorias; i++) {
+            let quantidadeLivrosPorCategoria = booksByCategory[i].books.length
+            console.log(`Quantidade de livros na ${i+1}º Categoria: ${quantidadeLivrosPorCategoria}`)
+        }
     }
     console.log('---------------------------')
     continuar = simOuNao()
     console.clear()
 } while (continuar < 2)
 */
-console.log(booksByCategory[0].books.length)
-
 header()
 console.log('Programa Finalizado!')
 console.log('===========================')
