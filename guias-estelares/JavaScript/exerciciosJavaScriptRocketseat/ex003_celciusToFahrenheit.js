@@ -10,17 +10,16 @@ function celciusOrFahrenheit(temperatura){
     let fahrenheit = temperatura.toUpperCase().includes('F')
     let erro = celcius && fahrenheit || !celcius && !fahrenheit
     // expressão regular para extrair apenas números
-    let regexFahrenheit = /[^0-9]/g
-    let regexCelcius = /[^0-9]/g
+    let regExp = /\D/g
 
     if(erro){
         return 'Grau não identificado!'
     } else if(celcius){
-        tempClear = Number(temperatura.replace(regexCelcius, ''))
+        tempClear = Number(temperatura.replace(regExp, ''))
         temperaturaEmFahrenheit = (((tempClear * 9) / 5) + 32)
         return `Temperatura: ${temperaturaEmFahrenheit.toFixed(2)}°F`
     } else if(fahrenheit){
-        tempClear = Number(temperatura.replace(regexFahrenheit, ''))
+        tempClear = Number(temperatura.replace(regExp, ''))
         temperaturaEmCelcius = (((tempClear - 32) * 5) / 9)
         return `Temperatura: ${temperaturaEmCelcius.toFixed(2)}°C`
     }
