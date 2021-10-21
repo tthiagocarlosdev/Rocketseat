@@ -1,0 +1,13 @@
+<h1>Scope let e const</h1>
+
+<script>
+// const e let são locais e só funcionam no escopo onde foi criada
+
+let y = 1
+console.log('> existe y antes do bloco?', y)
+{
+    const y = 0
+    console.log('> existe y dentro do bloco?', y)
+}
+console.log('> existe y depois do bloco?', y)
+</script>
