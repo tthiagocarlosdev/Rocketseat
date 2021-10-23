@@ -24,7 +24,7 @@
           <img src="http://lorempixel.com/185/185/people/" alt="Foto pessoal" />
         </div>
         
-        <h1>Thiago Carlos</h1>
+        <h1 id="userName">Thiago Carlos</h1>
         
         <a href="https://github.com/tthiagocarlosdev" target="_blank"><img src="images/github.svg" alt="ícone github"/>tthiagocarlosdev</a>
 
@@ -32,23 +32,23 @@
           As instructor focused on helping people start programming for web
         </p>
 
-        <ul>
-          <li>
+        <ul id="socialLinks">
+          <li class="youtube">
             <a href="https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw" target="_blank">
               <img src="images/youtube.svg" alt="ícone youtube">
             </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/tthiagocarlos.dev/" target="_blank">
-              <img src="images/instagram.svg" alt="ícone instagram">
-            </a>
-          </li>
-          <li>
+          </li>          
+          <li class="facebook">
             <a href="https://m.facebook.com/thiago.carlos.94" target="_blank">
               <img src="images/facebook.svg" alt="ícone facebook">
             </a>
           </li>
-          <li>
+          <li class="instagram">
+            <a href="https://www.instagram.com/tthiagocarlos.dev/" target="_blank">
+              <img src="images/instagram.svg" alt="ícone instagram">
+            </a>
+          </li>
+          <li class="twitter">
             <a href="https://twitter.com/" target="_blank">
               <img src="images/twitter.svg" alt="ícone twitter">
             </a>
@@ -58,7 +58,27 @@
       </div>
     </main>
     <script>
-      alert('AULA 03 - 1:02:33')
+
+      const linksSocialMedia = {
+        github: "tthiagocarlosdev",
+        youtube: "UCZN-uQtc4UDQt_tLu-I7Wpw",
+        instagram: 'tthiagocarlos.dev',
+        facebook: "thiago.carlos.94",
+        twitter: "https://twitter.com/"
+      }
+      
+      function changeSocialMediaLinks(){
+        
+        for(let li of socialLinks.children){
+          const social = li.getAttribute('class')
+          li.children[0].href = `https://www.${social}.com/${linksSocialMedia[social]}/`
+          alert(li.children[0].href)
+        }
+
+      }
+
+     // changeSocialMediaLinks()
+
     </script>
   </body>
 </html>
