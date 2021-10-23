@@ -21,14 +21,14 @@
             <img src="images/build.svg" alt="Selo Rocketseat" />
           </span>
           
-          <img src="http://lorempixel.com/185/185/people/" alt="Foto pessoal" />
+          <img id="userImage" src="http://lorempixel.com/185/185/people/" alt="Foto pessoal" />
         </div>
         
         <h1 id="userName">Thiago Carlos</h1>
         
-        <a href="https://github.com/tthiagocarlosdev" target="_blank"><img src="images/github.svg" alt="ícone github"/>tthiagocarlosdev</a>
+        <a id="userLink" href="https://github.com/tthiagocarlosdev" target="_blank"><img src="images/github.svg" alt="ícone github"/> <span id="userLogin">Limeira</span></a>
 
-        <p>
+        <p id="userBio">
           As instructor focused on helping people start programming for web
         </p>
 
@@ -57,28 +57,6 @@
 
       </div>
     </main>
-    <script>
-
-      const linksSocialMedia = {
-        github: "tthiagocarlosdev",
-        youtube: "UCZN-uQtc4UDQt_tLu-I7Wpw",
-        instagram: 'tthiagocarlos.dev',
-        facebook: "thiago.carlos.94",
-        twitter: "https://twitter.com/"
-      }
-      
-      function changeSocialMediaLinks(){
-        
-        for(let li of socialLinks.children){
-          const social = li.getAttribute('class')
-          li.children[0].href = `https://www.${social}.com/${linksSocialMedia[social]}/`
-          alert(li.children[0].href)
-        }
-
-      }
-
-     // changeSocialMediaLinks()
-
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>
