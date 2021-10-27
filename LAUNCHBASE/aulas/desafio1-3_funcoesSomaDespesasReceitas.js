@@ -16,22 +16,26 @@ const usuarios = [
   }
 ];
 
-const saldo = []
-const totalReceita = []
-const totalDespesas = []
 
 for(let i = 0; i < usuarios.length; i++){
-  console.log(usuarios[i].nome)
+  const saldo = []
+  const totalReceita = []
+  const totalDespesas = []
+  const statusFinal = []
+
   totalReceita[i] = somaNumeros(usuarios[i].receitas)
   totalDespesas[i] = somaNumeros(usuarios[i].despesas)
   saldo[i] = calculaSaldo(totalReceita[i], totalDespesas[i])
-  console.log(`A receita de ${usuarios[i].nome} é igual a ${somaNumeros(usuarios[i].receitas)}`)
-  console.log(`A despesa de ${usuarios[i].nome} é igual a ${somaNumeros(usuarios[i].despesa)}`)
-  console.log(`O saldo de ${usuarios[i]} é igual a ${saldo[i]}`)
+  statusFinal[i] = statusDoSaldo(saldo[i])
+
+  //console.log(usuarios[i].nome)
+  // console.log(`A despesa de ${usuarios[i].nome} é igual a ${somaNumeros(usuarios[i].despesas)}`)
+  // console.log(`A receita de ${usuarios[i].nome} é igual a ${somaNumeros(usuarios[i].receitas)}`)
+  console.log(`${usuarios[i].nome} possui saldo ${statusFinal[i]} de R$${saldo[i].replace('.', ',')}`)
 }
 
 function calculaSaldo(receita, despesa){
-  return receita - despesa
+  return (receita - despesa).toFixed(2)
 }
 
 function somaNumeros(array){
@@ -42,50 +46,13 @@ function somaNumeros(array){
   return somaNumeros.toFixed(2)
 }
 
-
-
-
-/*
-
-for(let i = 0; i < usuarios.length; i++){
-  totalReceita[i] = somaNumeros(usuarios[i].receitas)
-  totalDespesas[i] = somaNumeros(usuarios[i].despesas)
+function statusDoSaldo(valor){
+    if(valor == 0){
+      return `ZERADO`
+    } else if (valor < 0) {
+      return `NEGATIVO`
+    } else {
+      return `POSITIVO`
+    }
 }
 
-
-function somaNumeros(array){
-  let somaNumeros = 0
-  for(let i = 0; i < array.length; i++) {
-    somaNumeros += array[i]
-  }
-  return somaNumeros.toFixed(2)
-}
-
-
-
-console.log(totalReceita)
-console.log(totalDespesas)
-
-saldo = []
-for(let i = 0; i < usuarios.length; i++){
-  totalReceita[i] = somaNumeros(usuarios[i].receitas)
-  totalDespesas[i] = somaNumeros(usuarios[i].despesas)
-  saldo[i] = calculaSaldo(totalReceita, totalDespesas)
-  console.log(saldo[i])
-}
-
-
-
-
-console.log('')
-for(let i = 0; i < usuarios.length; i++){
-  console.log(`A receita de ${usuarios[i].nome} é igual a ${somaNumeros(usuarios[i].receitas)}`)
-}
-console.log(somaArray(usuarios[0].receitas))
-console.log(somaArray(usuarios[0].despesas))
-console.log(usuarios[0].receitas.length)
-console.log(usuarios[0].receitas[0])
-console.log(usuarios[0].receitas[1])
-console.log(usuarios[0].receitas[2])
-console.log(usuarios[0].receitas[3])
-*/
