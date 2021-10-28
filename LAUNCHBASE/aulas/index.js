@@ -96,7 +96,7 @@ const media = (alunos[0].nota + alunos[1].nota + alunos[2].nota) / 3
 console.log(nomeDeAlunos)
 console.log(alunos)
 console.log(media.toFixed(2))
-*/
+
 
 // Criar um programa que calcula a média das turmas de alunos
 // e envia mensagem do cálculo da média.
@@ -190,3 +190,7 @@ sendMessage(average2, 'Class B')
 
 studentReprovados(classA)
 studentReprovados(classB)
+*/
+
+
+
