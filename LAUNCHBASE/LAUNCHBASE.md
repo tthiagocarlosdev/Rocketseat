@@ -141,7 +141,7 @@ Configure o **start** para rodar o **nodemon** e o servidor será reiniciado aut
 
 ## 2.1 Instalando e configurando o Nunjucks
 
-* Levando o projeto do site para dentro do servidor. Criar uma pasta chamada viiews e salvar os arquivos do site dentro desta pasta.
+* Levando o projeto do site para dentro do servidor. Criar uma pasta chamada views e salvar os arquivos **.html** do site dentro desta pasta.
 * No terminal, instalar o **nunjucks** (template engine que trabalha como um motor no servidor para reutilizar códigos):
 
 ```tex
@@ -285,5 +285,92 @@ server.get("/", function(req, res){
 
 ## 2.4 Configurando arquivos .njk
 
+* No servidor, alterar o **view engine" para njk, em vez de html:
+
+```javascript
+server.set("view engine", "njk")
+```
+
+* Alterar também a extensão dos arquivos **.html** para **.njk**.
+* Será preciso adicionar uma extensão para ler os arquivos **njk**. Basta procurar no proprio VSCode por **njk** em extensões e intalar o **Nunjucks Template** da **eseom**.
+* Será necessário também alterar as configurações do VSCode, adicionando a linha de código abaixo, para que o arquivo **.njk** tenha o mesmo **emmet** do **.html**. Abra o **Settings (JSON)** no VSCode e adicione o código abaixo no arquivo .json do VSCode:
+
+```json
+"emmet.includeLanguages": {
+  "njk": "html"
+},
+```
+
+
+
 ## Desafio 3-1
+
+Para no **2.2 Trazendo o Front end do site para o servidor**
+
+### :rocket: Sobre o desafio
+
+Nesse desafio você deve criar um servidor que tenha duas rotas que devem retornar o conteúdo dos html gerados no desafio 2-3 (páginas de `Cursos` e `Sobre`). Além disso, deve ser implementando um arquivo padrão (layout.njk) que reaproveite o código em comum entre esses dois e também um arquivo que sirva uma página de erro 404.
+
+*Erro 404 é comum aparecer em páginas da internet, quando não foi encontrado nenhum conteúdo.*
+
+### Arquivos HTML
+
+- `courses.njk`: Arquivo referente à pagina de conteúdos, deve ser servido na rota raiz.
+
+- `about.njk`: Arquivo referente à pagina de descrição, deve ser servido na rota /about.
+
+- `layout.njk`: Arquivo referente à base comum entre as páginas.
+
+- `not-found.njk`: Arquivo referente à pagina de erro 404, deve ser servido quando for realizada uma requisição à uma página que não existe. Esse arquivo deve ter:
+
+  - Layout.njk como base
+  - Ter um texto informativo sobre o erro
+
+  Dica: Para capturar essas requisições, basta adicionar esse trecho após **todas** as rotas no seu `server.js`:
+
+  ```javascript
+  server.use(function(req, res) {
+    res.status(404).render("not-found");
+  });
+  ```
+
+  ### Estilização
+
+  Você tem liberdade para escolher a estilização que preferir para esse desafio.
+
+# 3. Usando dados dinâmicos
+
+## 3.1 Exportando e importando JavaScript
+
+## 3.2 Passando dados do Back para o Front
+
+## 3.3 Alinhando elementos com CSS Grid
+
+## 3.4 Atualizando página sobre
+
+## Desafio 3-2
+
+# 4. Vídeos em destaque
+
+## 4.1 Adicionando vídeos em destaque
+
+## 4.2 Estilizando a label destaque
+
+## 4.3 Classes CSS dinâmicas e noCache Nunjucks
+
+# 5. Página de vídeo único
+
+## 5.1 Passando dados do Front para o back com Query Strings
+
+## 5.2 Filtrando elementos do array de vídeos
+
+## 5.3 Estruturando a página de vídeo único
+
+## 5.4 Reconfigurando o iframe
+
+## 5.5 Redirecionando URL com JavaScript
+
+## 5.6 Ajustes finais
+
+## Desafio 3-3
 
