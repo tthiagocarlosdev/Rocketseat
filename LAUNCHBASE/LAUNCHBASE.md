@@ -1,3 +1,7 @@
+https://www.notion.so/pt-br
+
+https://www.softr.io/tools/download-youtube-thumbnail → Site para criar url de thumbnail de vídeos do YouTube.
+
 # Construíndo Foodfy
 
 ## LAUNCHBASE
@@ -8,7 +12,7 @@
 
 # 1. Criando o servidor
 
-	## 1. Iniciando a configuração do servidor
+## 1.1 Iniciando a configuração do servidor
 
 Fazer o HTML com o back-end para criar uma página adicional para o cliente alterar as informações da página, sem precisar alterar o HTML. Os dados serão passados através de um banco de dados. O HTMl será dinâmico.
 
@@ -17,7 +21,11 @@ Será usado **template engine** para reaproveitar códigos.
 * Criação de uma nova **pasta** e dentro desta pasta um arquivo **server.js**;
 * Instalação de dependências pelo terminal na pasta onde está seu arquivo **server.js** através do gerenciador de pacotes **npm**;
 
-```$npm init -y```    :arrow_right: ​Será criado um arquivo **package.json** (Arquivo de lotação de Objeto *JavaScrit*) :arrow_down: 
+```tex
+$ npm init -y
+```
+
+ :arrow_up: ​Será criado um arquivo **package.json** (Arquivo de lotação de Objeto *JavaScrit*) :arrow_down: 
 
 ```json
 {
@@ -30,8 +38,6 @@ Será usado **template engine** para reaproveitar códigos.
   }
 }
 ```
-
-
 
 ## 1.2 Criando o servidor
 
