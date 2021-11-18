@@ -2,6 +2,8 @@
     :root {
       --colorGreen: #50fa7b;
       --colorRoket: #7159c1;
+      --colorBackgroundButtons:#D6C3F4;
+      --colorLinks: #655C73;
     }
 
     *{
@@ -19,6 +21,16 @@
       text-align:center;
     }
 
+    /*=== DESAFIO 2-1 ===*/
+
+    #buttons {
+      text-align:center;
+      background-color: var(--colorBackgroundButtons);
+    }
+
+    
+
+    /*=== DESAFIO 2-2 ===*/
     #image img{
       margin-top:32px;
       border-radius: 50%;
