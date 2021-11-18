@@ -36,6 +36,23 @@
       text-decoration: none;
     }
 
+    .links:hover {
+      padding: 10px;
+      border-radius: 3px;
+      border: 2px solid var(--colorGreen);
+      color: var(--colorGreen);
+      transition: color 500ms;
+    }
+
+    #imageRocketseat img {
+      margin-top:15%;
+      border-radius: 50%;
+    }
+
+    #imageRocketseat img:hover{
+      border: 3px solid var(--colorGreen);
+    }
+
     /*=== DESAFIO 2-2 ===*/
     #image img{
       margin-top:32px;
