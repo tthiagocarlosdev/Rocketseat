@@ -161,9 +161,13 @@
     .close-modal{
       color: black;
       position: absolute;
-      right: 8px;
-      top: 8px;
+      right: 20px;
+      top: 5px;
       cursor: pointer;
+    }
+
+    .close-modal:hover{
+      background-color: var(--colorGreen);
     }
 
     .modal-overlay.active {
@@ -173,7 +177,29 @@
 
     iframe {
       width: 100%;
-      height: 90%;
-      position:absolute;
-      top:5%;
+      height: 750px;
+      position:static;
+      top:15px;
     }
+
+    /* Foram alterados do projeto original, para que o iframe funcionasse direito:
+    Foi adicionado um ':hover' na class 'close-modal'
+
+    .close-modal:hover{
+      background-color: var(--colorGreen);
+    }
+    
+    == iframe ==
+      * ORIGINAL:
+      height: 90%;
+      position: absolute;
+      top:5%;
+
+      * NESTE PROJETO
+      height: 750px;
+      position:static;
+      top:15px;
+
+      Assim ao clicar no card, a página do blog irá abrir centralizada no modal. 
+
+    */
