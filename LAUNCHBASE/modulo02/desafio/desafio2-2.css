@@ -28,7 +28,13 @@
       background-color: var(--colorBackgroundButtons);
     }
 
-    
+    .links {
+      color: var(--colorLinks);
+      font-size: 20px;
+      line-height: 100px;
+      margin: 30px;
+      text-decoration: none;
+    }
 
     /*=== DESAFIO 2-2 ===*/
     #image img{
