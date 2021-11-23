@@ -1,6 +1,6 @@
-https://www.notion.so/pt-br
+<a href="https://www.notion.so/pt-br">notion</a>
 
-https://www.softr.io/tools/download-youtube-thumbnail → Site para criar url de thumbnail de vídeos do YouTube.
+<a href="https://www.softr.io/tools/download-youtube-thumbnail">Site para criar url de thumbnail de vídeos do YouTube.</a>
 
 # Construíndo Foodfy
 
@@ -41,7 +41,7 @@ $ npm init -y
 
 ## 1.2 Criando o servidor
 
-No terminal, instale o express, conjunto de arquivos que vai ajudar a construir o servidor: 
+No terminal, instale o **express**, conjunto de arquivos que vai ajudar a construir o servidor: 
 
 ```tex
 $ npm install express
@@ -49,7 +49,7 @@ $ npm install express
 
 * Començando o servidor:
 
-Crie uma variável que vai receber o express:
+No servidor, arquivo **server.js**, crie uma variável que vai receber o express:
 
 ```javascript
 const express = require('express')
@@ -69,6 +69,24 @@ server.listen(5000, function() {
 })
 ```
 
+Execute o comando abaixo e o servidor irá rodar:
+
+```tex
+$ npm start
+```
+
+No navegador execute o comando abaixo para abrir o site:
+
+```tex
+http://localhost:5000/
+```
+
+Será apresentado uma mensagem de erro, tudo ok, ainda falta especificar a rota principal:
+
+```tex
+Cannot GET /
+```
+
 ## 1.3 Criando rotas
 
 ```javascript
@@ -83,7 +101,11 @@ res  :arrow_right: ​ response: resposta do servidor.
 
 `res.send()`  :arrow_right: ​ função do res
 
+Para o servidor e rode novamente, a mensagem de **"Hi!"** irá aparecer na tela do site. Siginifica que o seu servidor já está fuincionando.
+
 ## 1.4 Reiniciando servidor automaticamente com Nodemon
+
+No terminal, pare o servidor apertando **Ctrl + c**.
 
 Para ficar reiniciando o servidor automaticamente, instalamos a dependência **nodemon**:
 
@@ -137,6 +159,12 @@ Configure o **start** para rodar o **nodemon** e o servidor será reiniciado aut
 }
 ```
 
+Rode o Servidor:
+
+```tex
+npm start
+```
+
 # 2. Template Engine
 
 ## 2.1 Instalando e configurando o Nunjucks
@@ -164,6 +192,18 @@ nunjucks.configure("views", {
 })
 ```
 
+Rode o servidor:
+
+```tex
+npm start
+```
+
+E para abrir o site, abra o navegador e digite:
+
+```tex
+http://localhost:5000/
+```
+
 ## 2.2 Trazendo o Front end do site para o servidor
 
 * Agora a resposta do **server.get** será a renderização do html:
@@ -174,7 +214,7 @@ server.get("/", function(req, res){
 })
 ```
 
-Após a configuração, rodar o servidor e executar localhost:5000 no navegador, você verá que o html do seu site já está funcionando. Porém ainda sem o estilo (CSS), e essa parte será configurada agora:
+Após a configuração, rodar o servidor  `npm start ` e executar `localhost:5000` no navegador, você verá que o html do seu site já está funcionando. Porém ainda sem o estilo (CSS), e essa parte será configurada agora:
 
 * Crie uma pasta de nome **public** no seu projeto e salve o arquivo **styles.css** dentro dela;
 * Depois configure no servidor:
@@ -305,7 +345,7 @@ server.set("view engine", "njk")
 
 ## Desafio 3-1
 
-Para no **2.2 Trazendo o Front end do site para o servidor**
+Parei no **2.3 Página dinâmica com Nunjucks**
 
 ### :rocket: Sobre o desafio
 
