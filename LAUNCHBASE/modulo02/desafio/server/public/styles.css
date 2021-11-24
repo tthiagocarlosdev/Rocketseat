@@ -100,6 +100,7 @@
 
     #bottomSocialMedia{
       margin-top: 50px;
+      margin-bottom: 50px;
     }
 
     #bottomSocialMedia a{
@@ -238,3 +239,13 @@
       Assim ao clicar no card, a página do blog irá abrir centralizada no modal. 
  
     */
+
+    /* === not found === */
+
+    .notFound {
+      margin-top: 15%;
+    }
+
+    .notFound:hover {
+      text-shadow: 2px 2px 2px var(--colorGreen);;
+    }

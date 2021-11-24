@@ -3,19 +3,20 @@ const nunjucks = require('nunjucks')
 
 const server = express()
 
-server.set("view engine", "html")
 server.use(express.static('public'))
+
+server.set("view engine", "njk")
 
 nunjucks.configure("views", {
   express: server
 })
 
-server.listen(5000, function(){
-  console.log("server is running")
+server.get("/", function(req, res){
+  return res.render("layout")
 })
 
-server.get("/", function(req, res){
-  return res.render("index")
+server.get("/about", function(req, res){
+  return res.render("about")
 })
 
 server.get("/sobre", function(req, res){
@@ -25,3 +26,12 @@ server.get("/sobre", function(req, res){
 server.get("/conteudo", function(req, res){
   return res.render("conteudo")
 })
+
+server.use(function(req, res) {
+  res.status(404).render("not-found");
+});
+
+server.listen(5000, function(){
+  console.log("server is running")
+})
+

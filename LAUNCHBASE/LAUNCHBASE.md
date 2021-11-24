@@ -345,8 +345,6 @@ server.set("view engine", "njk")
 
 ## Desafio 3-1
 
-Parei no **2.3 Página dinâmica com Nunjucks**
-
 ### :rocket: Sobre o desafio
 
 Nesse desafio você deve criar um servidor que tenha duas rotas que devem retornar o conteúdo dos html gerados no desafio 2-3 (páginas de `Cursos` e `Sobre`). Além disso, deve ser implementando um arquivo padrão (layout.njk) que reaproveite o código em comum entre esses dois e também um arquivo que sirva uma página de erro 404.
