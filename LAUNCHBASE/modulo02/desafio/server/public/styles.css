@@ -99,17 +99,24 @@
     }
 
     #bottomSocialMedia{
+      background-color: var(--colorBackgroundButtons);
       margin-top: 50px;
-      margin-bottom: 50px;
     }
 
     #bottomSocialMedia a{
-      padding: 20px;
+      color: var(--colorLinks);
+      font-size: 20px;
+      line-height: 100px;
+      margin: 50px;
+      text-decoration: none;
     }
     
-    #bottomSocialMedia a :hover {
-      Background-color: var(--colorGreen);
-      border-radius: 5px;
+    #bottomSocialMedia a:hover {
+      padding: 10px;
+      border-radius: 3px;
+      border: 2px solid var(--colorGreen);
+      color: var(--colorGreen);
+      transition: color 500ms;
     }
 
     /*=== DESAFIO 2-3 ===*/
@@ -131,6 +138,10 @@
       margin-top:5%;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .cartao {
+      align-items: center;
     }
 
     .imagem {

@@ -663,6 +663,8 @@ module.exports = [
 const videos = require("./data")
 ```
 
+## 3.2 Passando dados do Back para o Front
+
 - Ainda no servidor, para enviar os dados do back para o front para adicionar o **items** no **server.get** do portifolio:
 
 ```javascript
@@ -675,11 +677,11 @@ server.get("/portifolio", function(req, res){
 - No arquivo **portifólio.njk** dentro da **<section *class*="cards">** será criado um loop:
 
 ```javascript
-{% for item in items %}}
-{% endfor %}}
+{% for item in items %}
+{% endfor %}
 ```
 
-- E dentro do loop será colocado a **div class card**, e adicionado cada variável que foi colocada dentro dos objetos no  array do arquivo **data.js**. Para cada variável, será chamada a  partir da abertuda de duas chaves e o nome da propriedade de cada variável.
+- E dentro do loop será colocado a **div class card**, e adicionado cada variável que foi colocada dentro dos objetos no  array do arquivo **data.js**. Para cada variável, será chamada a  partir da abertuda de duas chaves e o nome da propriedade de cada variável. OBS.: Todos os cards são apagados, ficando apenas um card dentro do loop.
 
 ```javascript
 {{item.id}}
@@ -706,15 +708,102 @@ server.get("/portifolio", function(req, res){
 
 
 
-## 3.2 Passando dados do Back para o Front
-
-
-
 ## 3.3 Alinhando elementos com CSS Grid
+
+- No **style.css** adicionar um **display** no card:
+
+```css
+.card {
+  background-color: var(--colorRoket);
+  display: grid;
+}
+```
+
+- No **card.info** alinhar os items ao centro:
+
+```css
+.card__info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+```
+
+
 
 ## 3.4 Atualizando página sobre
 
+Agora vamos colocar os dados da página **about** no back e puxar esses dados para o front.
+
+- No **server.js** cria uma variável no **server.get** de objetos, a qual terá como propriedades as variáveis que será utilizadas na página:
+
+```javascript
+const about = {
+    avatar_url: "https://avatars.githubusercontent.com/u/76978748?v=4",
+    name:"Thiago Carlos",
+    role: "Estudante da Rocketseat",
+    description: 'Aluno de desenvolvimento front-end, focado em aprender programação web na escola <a href="https://www.rocketseat.com.br/" target="_blank">Rocketseat',
+    links:[
+      {name:"GitHub", url:"https://github.com/tthiagocarlosdev"},
+      {name:"Youtube", url:"https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw"},
+      {name:"Instagram", url:"https://www.instagram.com/tthiagocarlos.dev/"},
+    ]
+  }
+```
+
+- ainda no **server.get** no retorno da função será adicionado o about:
+
+```javascript
+return res.render("about", {about})
+```
+
+- Na página **about** modificar as variáveis:
+
+```html
+{% block head %}
+  <title>Sobre - {{ about.name }}</title>
+{% endblock %}
+
+{% block content %}
+
+  <div id="wrapper">
+    <img src="{{ about.avatar_url }}" alt="Imagem de {{ about.name }}">
+    <h1>{{ about.name }}</h1>
+    <h2>{{ about.role }}</h2>
+    <p>{{ about.description }}</p>
+  </div>
+
+  <div id="links-footer" class="links">
+    {% for link in about.links %}
+      <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
+    {% endfor %}
+  </div>
+
+{% endblock %}
+```
+
+- No **server.js** será adicionado uma função **autoscape** para leitura de texto **html** no **nunjucks**:
+
+```javascript
+nunjucks.configure("views", {
+  express: server,
+  autoescape: false
+})
+```
+
+
+
 ## Desafio 3-2
+
+## :rocket: Sobre o desafio
+
+Nesse desafio você deve atualizar os arquivos com informações de cursos e descrição de forma dinâmica.
+
+### Estilização
+
+Você tem liberdade para escolher a estilização que preferir para esse desafio.
+
+
 
 # 4. Vídeos em destaque
 
