@@ -897,11 +897,118 @@ nunjucks.configure("views", {
 
 ## 5.1 Passando dados do Front para o back com Query Strings
 
+Agora ao clicar no card, irá abrir uma nova página, vamos excluir o **modal**.
+
+- No servidor será criada outra rota de video:
+
+```javascript
+server.get("/video", function(req, res){
+  const id = req.query.id
+  res.send(id)
+})
+```
+
+
+
 ## 5.2 Filtrando elementos do array de vídeos
+
+- Ainda no servidor no **server.get /video** será feito o filtro dos videos:
+
+```javascript
+server.get("/video", function(req, res){
+  const id = req.query.id
+
+  const video = videos.find(function(video){
+    if (video.id == id){
+      return true
+    }
+  })
+
+  if(!video){
+    return res.send("Video not found!")
+  }
+
+  return res.render("video", { video })
+})
+```
+
+- Apos é preciso adicionar a página **video** na pasta **views**. Caso a página não seja adicionada e configurada, o erro abaixo será apresentado:
+
+```tex
+Error: template not found: video.njk
+```
+
+
 
 ## 5.3 Estruturando a página de vídeo único
 
+- No servidor o **return** do **server.get /video** agora terá o **item**:
+
+```javascript
+return res.render("video", { item: video })
+```
+
+- Configuração da página video:
+
+```html
+{% extends "layout.njk" %}
+
+{% block head %}
+  <title>{{ item.title }}</title>     
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+  <h1>{{ item.title }}</h1>
+</div>
+
+<section class="cards">
+
+  <div class="card" id="{{item.id}}">
+    <div class="card__image-container {{ 'featured-wrapper' if item.featured }}">
+      <img src="https://img.youtube.com/vi/{{item.id}}/sddefault.jpg" alt="Imagem de {{item.title}}">
+      {% if item.featured %}
+        <div class="featured">Featured</div>
+      {% endif %}
+    </div>
+    <div class="card__content">
+      <p>{{item.title}}</p>
+    </div>
+    <div class="card__info">
+      <p>{{item.duration}}</p>
+      <p class="card__price">{{item.price}}</p>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
+```
+
+- Configurando o CSS:
+
+  - Adiciona uma **class video** na **section cards** da página **video**:
+
+  ```html
+  <section class="cards video">
+  ```
+
+  - Cria uma **seção** para estilizar a página video no **sytle.css**:
+
+  ```css
+  /*=== VIDEO PAGE ===*/
+  .video{
+    margin: 0 auto;
+    max-width: 640px;
+  }
+  ```
+
+  
+
 ## 5.4 Reconfigurando o iframe
+
+
 
 ## 5.5 Redirecionando URL com JavaScript
 
