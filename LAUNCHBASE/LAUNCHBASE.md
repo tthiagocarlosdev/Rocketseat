@@ -341,6 +341,219 @@ server.set("view engine", "njk")
 },
 ```
 
+- lembrar de mudar a extenção dos aquivos na extenção de cada arquivo dependente do layout:
+
+```tex
+{% extends "layout.njk" %}
+```
+
+* Abaixo segue os arquivos completos de cada página:
+
+1. layout.njk
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    {% block head %}
+        <title>Thiago Carlos</title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="/style.css">
+  </head>
+
+  <body>
+    <header>
+      <div class="links">
+        <a href="/">Sobre</a>
+        <a href="/portifolio">Aulas</a>
+      </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+  </body>
+
+</html>
+```
+
+2. about.njk
+
+```html
+{% extends "layout.njk" %}
+
+{% block head %}
+        <title>Sobre - Thiago Carlos</title>
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+  <img src="https://avatars.githubusercontent.com/u/76978748?v=4" alt="Thiago Carlos">
+  <h1>Thiago Carlos</h1>
+  <h2>Estudante da Rocketseat</h2>
+  <p>Aluno de desenvolvimento front-end, focado em aprender programação web na escola <a href="https://www.rocketseat.com.br/" target="_blank">Rocketseat</a></p>
+</div>
+
+<div id="links-footer" class="links">
+  <a href="https://github.com/tthiagocarlosdev" target="_blank">GitHub</a>
+  <a href="https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw" target="_blank">Youtube</a>
+  <a href="https://www.instagram.com/tthiagocarlos.dev/" target="_blank">Instagram</a>
+</div>
+
+{% endblock %}
+```
+
+3. portifolio.njk
+
+```html
+{% extends "layout.njk" %}
+
+{% block head %}
+
+  <title>Portifólio - Thiago Carlos</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+       
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+  <h1>Aulas</h1>
+</div>
+
+<section class="cards">
+
+  <div class="card" id="0mHEuja3c_Y">
+    <div class="card__image-container">
+      <img src="https://img.youtube.com/vi/0mHEuja3c_Y/sddefault.jpg" alt="Video Aula">
+    </div>
+    <div class="card__content">
+      <p>Input no terminal com JS e Node.js| Thiago Carlos </p>
+    </div>
+    <div class="card__info">
+      <p>3 min</p>
+      <p class="card__price">Free</p>
+    </div>
+  </div>
+
+  <div class="card" id="mgBc1Scnzjk">
+    <div class="card__image-container">
+      <img src="https://img.youtube.com/vi/mgBc1Scnzjk/sddefault.jpg" alt="Video Aula">
+    </div>
+    <div class="card__content">
+      <p>Exercício média em JS | Thiago Carlos </p>
+    </div>
+    <div class="card__info">
+      <p>3 min</p>
+      <p class="card__price">Free</p>
+    </div>
+  </div>
+
+  <div class="card" id="o0hb4HNwWfU">
+    <div class="card__image-container">
+      <img src="https://img.youtube.com/vi/o0hb4HNwWfU/sddefault.jpg" alt="Video Aula">
+    </div>
+    <div class="card__content">
+      <p>Exercício Teste dos Triângulos em JS | Thiago Carlos </p>
+    </div>
+    <div class="card__info">
+      <p>13 min</p>
+      <p class="card__price">Free</p>
+    </div>
+  </div>
+
+  <div class="card" id="ZJb0K3hacnY">
+    <div class="card__image-container">
+      <img src="https://img.youtube.com/vi/ZJb0K3hacnY/sddefault.jpg" alt="Video Aula">
+    </div>
+    <div class="card__content">
+      <p>Exercício Sua Idade em JS | Thiago Carlos </p>
+    </div>
+    <div class="card__info">
+      <p>5 min</p>
+      <p class="card__price">Free</p>
+    </div>
+  </div>
+
+  <div class="card" id="kcz5fKz3IgY">
+    <div class="card__image-container">
+      <img src="https://img.youtube.com/vi/kcz5fKz3IgY/sddefault.jpg" alt="Video Aula">
+    </div>
+    <div class="card__content">
+      <p>Exercício Seus Dólares em JS | Thiago Carlos </p>
+    </div>
+    <div class="card__info">
+      <p>4 min</p>
+      <p class="card__price">Free</p>
+    </div>
+  </div>
+
+  <div class="card" id="F1BPBh8P1xQ">
+    <div class="card__image-container">
+      <img src="https://img.youtube.com/vi/F1BPBh8P1xQ/sddefault.jpg" alt="Video Aula">
+    </div>
+    <div class="card__content">
+      <p>Exercício Temperatura em JS | Thiago Carlos </p>
+    </div>
+    <div class="card__info">
+      <p>4 min</p>
+      <p class="card__price">Free</p>
+    </div>
+  </div>
+  
+</section>
+
+<div class="modal-overlay ">
+  <div class="modal">
+    <a class="close-modal">
+      <i class="material-icons">close</i>
+    </a>
+
+    <div class="modal-content">
+      <iframe src="" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="scripts.js"></script>
+
+{% endblock %}
+```
+
+4. server.js
+
+```javascript
+const express = require('express')
+const nunjucks = require('nunjucks')
+
+const server = express()
+
+server.use(express.static('public'))
+
+server.set("view engine", "njk")
+
+nunjucks.configure("views", {
+  express: server
+})
+
+server.get("/", function(req, res){
+  return res.render("about")
+})
+
+server.get("/portifolio", function(req, res){
+  return res.render("portifolio")
+})
+
+server.listen(5000, function() {
+  console.log("server is running")
+})
+```
+
 
 
 ## Desafio 3-1
@@ -380,7 +593,122 @@ Nesse desafio você deve criar um servidor que tenha duas rotas que devem retorn
 
 ## 3.1 Exportando e importando JavaScript
 
+* Criar um arquivo de nome **data.js** na árvore principal.
+
+* No arquivo **data.js** fazer a exportação iniciando com o código abaixo:
+
+```javascript
+module.exports = [
+  
+]
+```
+
+* Dentro do **module.exports** teremos um array, e dentro do array teremos objetos. Cada objeto terá um **id**, um **título**, **duração** e **preço** como propriedades para cada vídeo da página portifólio.
+
+```javascript
+{
+   id:"",
+   title: "",
+   duration:"",
+   price: ""
+},
+```
+
+Todos os objetos:
+
+```javascript
+module.exports = [
+  {
+    id:"0mHEuja3c_Y",
+    title: "Input no terminal com JS e Node.js| Thiago Carlos",
+    duration:"3 min",
+    price: "Free"
+  },
+  {
+    id:"mgBc1Scnzjk",
+    title: "Exercício média em JS | Thiago Carlos",
+    duration:"3 min",
+    price: "Free"
+  },
+  {
+    id:"o0hb4HNwWfU",
+    title: "Exercício Teste dos Triângulos em JS | Thiago Carlos",
+    duration:"13 min",
+    price: "Free"
+  },
+  {
+    id:"ZJb0K3hacnY",
+    title: "Exercício Sua Idade em JS | Thiago Carlos",
+    duration:"5 min",
+    price: "Free"
+  },
+  {
+    id:"kcz5fKz3IgY",
+    title: "Exercício Seus Dólares em JS | Thiago Carlos",
+    duration:"4 min",
+    price: "Free"
+  },
+  {
+    id:"F1BPBh8P1xQ",
+    title: "Exercício Temperatura em JS | Thiago Carlos",
+    duration:"4 min",
+    price: "Free"
+  },
+]
+```
+
+* Depois, no servidor, adicionar a variável **videos** requerindo o arquivo **.data**:
+
+```javascript
+const videos = require("./data")
+```
+
+- Ainda no servidor, para enviar os dados do back para o front para adicionar o **items** no **server.get** do portifolio:
+
+```javascript
+server.get("/portifolio", function(req, res){
+
+  return res.render("portifolio", {items: videos})
+})
+```
+
+- No arquivo **portifólio.njk** dentro da **<section *class*="cards">** será criado um loop:
+
+```javascript
+{% for item in items %}}
+{% endfor %}}
+```
+
+- E dentro do loop será colocado a **div class card**, e adicionado cada variável que foi colocada dentro dos objetos no  array do arquivo **data.js**. Para cada variável, será chamada a  partir da abertuda de duas chaves e o nome da propriedade de cada variável.
+
+```javascript
+{{item.id}}
+```
+
+- a seção completa:
+
+```javascript
+{% for item in items %}}
+    <div class="card" id="{{item.id}}">
+      <div class="card__image-container">
+        <img src="https://img.youtube.com/vi/{{item.id}}/sddefault.jpg" alt="Imagem de {{item.title}}">
+      </div>
+      <div class="card__content">
+        <p>{{item.title}}</p>
+      </div>
+      <div class="card__info">
+        <p>{{item.duration}}</p>
+        <p class="card__price">{{item.price}}</p>
+      </div>
+    </div>
+  {% endfor %}}
+```
+
+
+
 ## 3.2 Passando dados do Back para o Front
+
+
 
 ## 3.3 Alinhando elementos com CSS Grid
 
