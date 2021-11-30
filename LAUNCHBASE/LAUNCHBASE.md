@@ -809,9 +809,89 @@ Você tem liberdade para escolher a estilização que preferir para esse desafio
 
 ## 4.1 Adicionando vídeos em destaque
 
+- No arquivo **data.js** adicionar **featured: true** nos cartões que deseja que sejam destacados.
+
+```javascript
+{
+    id:"F1BPBh8P1xQ",
+    title: "Exercício Temperatura em JS | Thiago Carlos",
+    duration:"4 min",
+    price: "Free",
+    featured: true
+  },
+```
+
+- Na página **portifolio.njk** adicionar uma condicional dentro do card:
+
+```html
+{% if item.featured %}
+   <div class="featured">Featured</div>
+{% endif %}
+```
+
+
+
 ## 4.2 Estilizando a label destaque
 
+- Adicionando curso no card:
+  - Vá até o arquivo **style.css** e adicione o **cursor pointer**:
+
+```css
+.card {
+  background-color: var(--colorRoket);
+  display: grid;
+  cursor: pointer;
+}
+```
+
+- Estilizando a featured:
+
+```css
+/*=== FEATURED ===*/
+.card__image-container{
+  position: relative;
+}
+
+.featured {
+  background: #f7d05f;
+  color: #111;
+  padding: 2px 8px;
+  position: absolute;
+  left: 5px;
+  border-radius: 16px;
+  top: -10px;
+}
+```
+
+
+
 ## 4.3 Classes CSS dinâmicas e noCache Nunjucks
+
+- No **server.js** configurar o **nunjucks** para **noCache**:
+
+```javascript
+nunjucks.configure("views", {
+  express: server,
+  autoescape: false,
+  noCache: true
+})
+```
+
+- Na página **portifolio.njk** adicionar uma condicional para apenas colocar uma classe quando aparecer o **featured**:
+
+```html
+<div class="card__image-container {{ 'featured-wrapper' if item.featured }}">
+```
+
+- No **style.css** adicionar mais uma class ao featured:
+
+```css
+.featured-wrapper.card__image-container{
+  position: relative;
+}
+```
+
+
 
 # 5. Página de vídeo único
 

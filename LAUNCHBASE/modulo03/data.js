@@ -3,7 +3,8 @@ module.exports = [
     id:"0mHEuja3c_Y",
     title: "Input no terminal com JS e Node.js| Thiago Carlos",
     duration:"3 min",
-    price: "Free"
+    price: "Free",
+    featured: true
   },
   {
     id:"mgBc1Scnzjk",
@@ -21,7 +22,8 @@ module.exports = [
     id:"ZJb0K3hacnY",
     title: "Exercício Sua Idade em JS | Thiago Carlos",
     duration:"5 min",
-    price: "Free"
+    price: "Free",
+    featured: true
   },
   {
     id:"kcz5fKz3IgY",
@@ -33,6 +35,7 @@ module.exports = [
     id:"F1BPBh8P1xQ",
     title: "Exercício Temperatura em JS | Thiago Carlos",
     duration:"4 min",
-    price: "Free"
+    price: "Free",
+    featured: true
   },
 ]
