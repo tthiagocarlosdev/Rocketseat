@@ -2,13 +2,15 @@
 
 <a href="https://www.softr.io/tools/download-youtube-thumbnail">Site para criar url de thumbnail de vídeos do YouTube.</a>
 
-# Construíndo Foodfy
+
+
+# Fase 02
 
 ## LAUNCHBASE
 
-## Fase 02
-
 ## Iniciando no Back-end
+
+
 
 # 1. Criando o servidor
 
@@ -1008,11 +1010,166 @@ return res.render("video", { item: video })
 
 ## 5.4 Reconfigurando o iframe
 
+Da página **portifólio.njk** para a página **video.njk**:
+
+- Na div **card__image-container** excluir as seguintes linhas de código:
+
+```html
+<img src="https://img.youtube.com/vi/{{item.id}}/sddefault.jpg" alt="Imagem de {{item.title}}">
+        {% if item.featured %}
+          <div class="featured">Featured</div>
+        {% endif %}
+```
+
+- Retirar da div **modal-content** e colocar na div **card__image-container** o **iframe**:
+
+```html
+<iframe src="" frameborder="0"></iframe>
+```
+
+- Retirar a variável do featured da class **card__image-container**:
+
+```html
+{{ 'featured-wrapper' if item.featured }}
+```
+
+- Trocar **card__image-container** por **card__video-container**:
+
+```html
+<div class="card__video-container">
+```
+
+- Colocar o endeteço do youtube mais a variável id dentro do _**src**_ do iframe:
+
+```html
+<iframe src="https://www.youtube.com/embed/{{item.id}}" frameborder="0"></iframe>
+```
+
+O **iframe** será carregado, mas de maneira desorganizada, então vamos organizar **CSS**:
+
+- Vamos pegar o elemento pai **card__video-container** e fazer as alterações:
+
+```css
+.card__video-container{
+  position: relative;
+  padding-top: 62.5%;
+}
+```
+
+- Vamos alterar o **iframe** da página **vídeo** para caso o **iframe** da página **portifólio** seja alterado não venha a interferir naquele:
+
+```css
+.card__video-container iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+```
+
 
 
 ## 5.5 Redirecionando URL com JavaScript
 
+Agora na página **portifolio**, eu preciso quando clicar no **card** ir para a página **vídeo** e para isto vamos usar o **JavaScript**:
+
+- No **script.js** deletar o **iframe**:
+
+```javascript
+modalOverlay.classList.add('active')
+    modalOverlay.querySelector('iframe').src = `https://www.youtube.com/embed/${videoId}`
+```
+
+```javascript
+document.querySelector('.close-modal').addEventListener("click", function(){
+  modalOverlay.classList.remove('active')
+  modalOverlay.querySelector('iframe').src = ""
+})
+```
+
+- Adicionar a janela que o video irá abrir:
+
+```javascript
+for(let card of cards){
+  card.addEventListener("click", function(){
+    const videoId = card.getAttribute("id")
+    window.location.href = `/video?id=${videoId}`
+  })
+}
+```
+
 ## 5.6 Ajustes finais
+
+Vamos organizar o título do video na página vídeo.
+
+- Na página **video.njk** adicionar a class video a div wrapper:
+
+```html
+<div id="wrapper" class="video">
+  <h1>{{ item.title }}</h1>
+</div>
+```
+
+- Na página **portifolio.njk** adicionar uma **barra** no endereço da página **script**:
+
+```html
+<script src="/scripts.js"></script>
+```
+
+- Deletar o modal:
+
+```html
+<div class="modal-overlay ">
+  <div class="modal">
+    <a class="close-modal">
+      <i class="material-icons">close</i>
+    </a>
+
+    <div class="modal-content">
+      <iframe src="" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+```
+
+- No servidor podemos simplificar o **if** do **server.get "/video"**:
+
+```javascript
+const video = videos.find(function(video){
+    return video.id == id
+  })
+```
+
+
 
 ## Desafio 3-3
 
+## :rocket: Sobre o desafio
+
+Nesse desafio você deve criar uma página de descrição do curso que deve ser chamada no lugar da modal quando o usuário clicar no card do curso.
+
+### Rota
+
+A rota também será a `/courses`, porém o id do curso será passado via route params (ex.: `/courses/id_do_curso`). Dica: utilize o req.params para recuperar o id fornecido na rota.
+
+```javascript
+server.get("/courses/:id", function(req, res) {
+  const id = req.params.id;
+
+  return res.send(`O id fornecido na rota é: ${id}`);
+});
+```
+
+### Informações
+
+- Layout padrão
+- Card do curso
+- Link que redireciona para a página do curso
+
+### Fórum
+
+Se houver mais dúvida sobre o desafio, essa thread no fórum poderá ser útil para você ![purple_heart](https://github.githubassets.com/images/icons/emoji/unicode/1f49c.png) https://app.rocketseat.com.br/h/forum/launchbase/07c66e6d-06ff-4cfb-baf2-b5b27be6ac8b
+
+### Estilização
+
+Você tem liberdade para escolher a estilização que preferir para esse desafio.
