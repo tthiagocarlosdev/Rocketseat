@@ -27,12 +27,13 @@
     </ul>
   </div>
 
-  <div id="bottomSocialMedia">
+  <footer id="bottomSocialMedia">
 
     {% for bottom in sobre.bottomSocialMedia %}
       <a href="{{bottom.url}}" target="_blank"> {{ bottom.name }} </a>
     {% endfor %}
 
-  </div>
+  </footer>
+
 
 {% endblock %}
