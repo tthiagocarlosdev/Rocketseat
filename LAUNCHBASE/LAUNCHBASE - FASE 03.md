@@ -65,7 +65,6 @@ const nunjucks = require('nunjucks')
 const routes = require('./routes')
 const server = express()
 
-
 server.use(express.static('public'))
 
 server.set("view engine", "njk")
@@ -75,8 +74,6 @@ nunjucks.configure("views", {
   autoescape: false,
   noCache: true
 })
-
-
 
 server.listen(5000, function() {
   console.log("server is running")
@@ -92,7 +89,6 @@ const routes = express.Router()
 routes.get('/', function (req, res) {
   return res.send("ok")
 })
-
 
 module.exports = routes
 ```
@@ -150,11 +146,105 @@ Alterar o **header** colocando a página de instrutores e membros:
 </header>
 ```
 
-**1:52**
+No arquivo de rotas, alterar a rota principal para redirect e criar as rotas para as páginas instructors e members:
+
+```javascript
+routes.get('/', function (req, res) {
+  return res.redirect("/instructors")
+})
+
+routes.get('/instructors', function (req, res) {
+  return res.send("instructors")
+})
+
+routes.get('/members', function (req, res) {
+  return res.send("members")
+})
+```
+
+Verificar se está carregando as páginas digitando no navegador:
+
+```tex
+http://localhost:5000/instructors
+http://localhost:5000/members
+```
+
+Agora alterar o return na rota da página instructors para **render**:
+
+```javascript
+routes.get('/instructors', function (req, res) {
+  return res.render("instructors")
+})
+```
+
+Dentro do diretório **views**, criar um diretório de nome **instructors** e dentro deste um arquivo **index.njk**
+
+No **routes** adicionar o index no render:
+
+```javascript
+routes.get('/instructors', function (req, res) {
+  return res.render("instructors/index")
+})
+```
+
+No **index.njk** adicionar o **extends** e **block content**:
+
+```javascript
+{% extends "layout.njk" %}
+
+{% block content %}
+
+Instructors
+{% endblock content %}
+```
 
 
 
 ## 1.5 Estilizando estrutura e menu
+
+No diretório **public**, acessar o arquivo **styles.css** e apagar todo o conteúdo para reiniciar o estilo.
+
+Acessar o **Google Fonts** e importar a fonte **Roboto**
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+```
+
+Colocar como font-family do body a fonte importada:
+
+```css
+body{
+  font-family: 'Roboto', sans-serif;
+}
+```
+
+ Reiniciar as configurações da página:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+```
+
+Configurar o **body** e **header**:
+
+```css
+body{
+  background-color: #7159c1;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  background-color: white;
+  width: 100%;
+  padding: 32px;
+  text-align: center;
+}
+```
+
+
 
 ## 1.6 Corrigindo alinhamento dos itens do menu
 
