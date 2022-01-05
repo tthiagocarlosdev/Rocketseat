@@ -338,7 +338,7 @@ Adicionar uma reação ao passar o mouse por cima do link:
 }
 ```
 
-Agora iremos criar um efeito **transition** nos links, para isto vamos colocar um elemento pseudo hover:
+Agora iremos criar um efeito **transition** nos links, para isto vamos colocar um elemento pseudo hover após o elemento **a**, (**.links a:hover::after**):
 
 ```css
 .links {
@@ -378,6 +378,27 @@ Agora iremos criar um efeito **transition** nos links, para isto vamos colocar u
 
 
 ## 1.8 Aprofundando no CSS Transition
+
+Adicionando o efeito transition:
+
+```css
+.links a::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+
+.links a:hover::after {
+  width: 100%;
+  transition: width 700ms ease-in-out;
+}
+```
+
+
 
 ## Desafio 4-1
 
