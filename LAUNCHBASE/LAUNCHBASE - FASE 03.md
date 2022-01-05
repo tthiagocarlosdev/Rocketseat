@@ -244,11 +244,138 @@ header {
 }
 ```
 
+Estilizando os **links** do **header**:
+
+```css
+.links {
+  font-size: 22px;
+}
+
+.links a {
+  margin-left: 32px;
+  text-decoration: none;
+}
+```
+
 
 
 ## 1.6 Corrigindo alinhamento dos itens do menu
 
+No **header** adicionar um box-sizing:
+
+```css
+header {
+  background-color: white;
+  width: 100%;
+  padding: 32px;
+  text-align: center;
+  box-sizing: border-box;
+}
+```
+
+Agora queremos um espaçamento apenas entre os links **instructors** e **members**, porém ao inspecionar a página você observará que existe um espaçamento esquerdo nos dois links, fazendo com que o alinhamento não fique centralizado. Para corrigir isto, basta alterar o estilo da **class links** conforme abaixo:
+
+```css
+.links a + a {
+  margin-left: 32px;
+}
+
+.links a {
+  text-decoration: none;
+}
+```
+
+
+
 ## 1.7 Estilizando menu hover
+
+No arquivo **layout.njk** adicionar uma classe no **href instructors**:
+
+```html
+<a href="/" class="active" >Instructors</a>
+```
+
+No **styles** adicionar uma cor padrão ao link:
+
+```css
+.links a {
+  text-decoration: none;
+  color:#777;
+}
+```
+
+Criar uma **variável de cor** para a cor padrão da Rocketseat:
+
+```css
+:root {
+  --primary-color: #7159c1;
+}
+```
+
+Colocar essa variável no **background** do **body**:
+
+```css
+body{
+  background-color: var(--primary-color);
+  font-family: 'Roboto', sans-serif;
+}
+```
+
+Criar o estilo do link.active:
+
+```css
+.links a.active {
+  font-weight: bold;
+  color: var(--primary-color)
+}
+```
+
+Adicionar uma reação ao passar o mouse por cima do link:
+
+```css
+.links a:hover {
+  text-decoration: underline;
+}
+```
+
+Agora iremos criar um efeito **transition** nos links, para isto vamos colocar um elemento pseudo hover:
+
+```css
+.links {
+  font-size: 22px;
+}
+
+.links a + a {
+  margin-left: 32px;
+}
+
+.links a {
+  text-decoration: none;
+  color:#777;
+  position: relative;
+}
+
+.links a.active {
+  font-weight: bold;
+  color: var(--primary-color)
+}
+
+.links a:hover {
+  color: var(--primary-color)
+}
+
+.links a:hover::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+```
+
+
 
 ## 1.8 Aprofundando no CSS Transition
 
