@@ -6,7 +6,7 @@
 
 ## 1.1 Conhecendo e configurando o projeto
 
-Vamos construir um gerenciador de academias. Vamos poder cadastrar instrutores, colocando avatar, nome, data de nascimento, sexo, área de atuação. Podendo verificar, editar e deletar este instrutor. vamos também poder fazer o mesmo com os membros.
+Vamos construir um gerenciador de academias. Vamos poder cadastrar instrutores, colocando avatar, nome, data de nascimento, sexo, área de atuação. Podendo verificar, editar e deletar este instrutor. Vamos também poder fazer o mesmo com os membros.
 
 Vamos começar o projeto copiando alguns arquivos e diretórios do projeto do **módulo 3**. Arquivos: **package.json**, **server.js**; Diretórios: **views** e **public**. Crie um diretório de nome **modulo04** e coloque os arquivos copiados dentro. Após isso, abra o diretório **modulo04** no **VSC**.
 
@@ -24,11 +24,49 @@ $ npm install
 
 ## 1.2 Separando as rotas
 
-No **server.js** apagar a variável **videos**:
+No **server.js** apagar a variável **videos** e toda parte de **rotas**:
 
 ```javascript
 const videos = require("./data")
 ```
+
+```javascript
+server.get("/", function(req, res){
+  const about = {
+    avatar_url: "https://avatars.githubusercontent.com/u/76978748?v=4",
+    name:"Thiago Carlos",
+    role: "Estudante da Rocketseat",
+    description: 'Aluno de desenvolvimento front-end, focado em aprender programação web na escola <a href="https://www.rocketseat.com.br/" target="_blank">Rocketseat',
+    links:[
+      { name: "GitHub", url: "https://github.com/tthiagocarlosdev" },
+      { name: "Youtube", url: "https://www.youtube.com/channel/UCZN-uQtc4UDQt_tLu-I7Wpw" },
+      { name: "Instagram", url: "https://www.instagram.com/tthiagocarlos.dev/" }
+    ]
+  }
+  return res.render("about", {about})
+})
+
+server.get("/portifolio", function(req, res){
+
+  return res.render("portifolio", {items: videos})
+})
+
+server.get("/video", function(req, res){
+  const id = req.query.id
+
+  const video = videos.find(function(video){
+    return video.id == id
+  })
+
+  if(!video){
+    return res.send("Video not found!")
+  }
+
+  return res.render("video", { item: video })
+})
+```
+
+
 
 Criar um arquivo chamado **routes.js** e configurar toda a parte de rotas dentro deste arquivo. Comece criando o **express**.
 
@@ -401,6 +439,21 @@ Adicionando o efeito transition:
 
 
 ## Desafio 4-1
+
+## :rocket: Sobre o desafio
+
+Esse é o primeiro desafio da sequência de criação de um site de aulas particulares. A ideia é que você aplique, em pequenas doses, os conhecimentos aprendidos nas aulas. Nessa primeira etapa, você deve criar um header com dois links: `Teachers` e `Students` (aproveite a estrutura criada no módulo 03)
+
+### Estilização
+
+Você tem liberdade para escolher a estilização que preferir para esse desafio, mas alguns pontos são obrigatórios:
+
+- Deve ser aplicado um background;
+- Deve ser utilizada a fonte Roboto;
+- Utilize o conceito de `box-sizing` e o seletor `+` para centralizar os seus links;
+- Utilize o `after` e o `transition` para aplicar um efeito visual nos links quando o mouse passar por cima.
+
+
 
 ## 1.9 Recarregando a página automaticamente com browser sync]
 
