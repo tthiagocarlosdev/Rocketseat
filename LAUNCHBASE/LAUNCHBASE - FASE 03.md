@@ -483,6 +483,31 @@ Você perceberá que a porta mudou para a porta 3000. Agora não será preciso f
 
 ## 1.10 Criando o container de conteúdo
 
+Abrir o arquivo **index.njk** que está dentro do diretório **instructors** e dentro do diretório **views**:
+
+Criar uma **div.card** e acrescentar duas sessões dentro dela:
+
+```html
+<div class="card">
+  <section class="avatar"></section>
+  <section class="details"></section>
+
+</div>
+```
+
+Estilizar esse card no **style.css**:
+
+```css
+.card {
+  background-color: white;
+  width:800px;
+  height:400px;
+  margin:45px auto;
+}
+```
+
+
+
 ## 1.11 Trabalhando com background-image no CSS
 
 ## 1.12 Conhecendo o CSS Box Shadow
