@@ -455,7 +455,31 @@ Você tem liberdade para escolher a estilização que preferir para esse desafio
 
 
 
-## 1.9 Recarregando a página automaticamente com browser sync]
+## 1.9 Recarregando a página automaticamente com browser sync
+
+No terminal digitar ` Ctrl + C` para parar o servidor e instalar as dependências **browser-sync** e **run-all**:
+
+```tex
+$ npm install browser-sync npm-run-all -D
+```
+
+browser-sync irá fazer o reload da aplicação quando mudar algum arquivo;
+
+run-all irá rodar diversos serviços ao mesmo tempo.
+
+No arquivo **package.json** fazer as seguintes alterações no **script**:
+
+```json
+"scripts": {
+    "start": "npm-run-all -p nodemon browsersync",
+    "nodemon": "nodemon server.js",
+    "browsersync": "browser-sync start --proxy http://localhost:5000 --files 'public,views'"
+  },
+```
+
+Após isso executar no terminal `npm start`
+
+Você perceberá que a porta mudou para a porta 3000. Agora não será preciso ficar recarregando a página toda vez que realizar alguma alteração. O reload resá automático.
 
 ## 1.10 Criando o container de conteúdo
 
