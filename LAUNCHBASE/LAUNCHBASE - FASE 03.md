@@ -510,6 +510,34 @@ Estilizar esse card no **style.css**:
 
 ## 1.11 Trabalhando com background-image no CSS
 
+No **index.njk**, configurar a **section avatar** para pegar imagens automaticamente do **unsplash**:
+
+```html
+<div class="card">
+  <section 
+  class="avatar" 
+  style="background: url(https://source.unsplash.com/collection/8325170/500x500) no-repeat center center / cover"></section>
+  <section class="details"></section>
+
+</div>
+```
+
+No **style.css** adicionar o grid:
+
+```css
+.card {
+  background-color: white;
+  width:800px;
+  height:400px;
+  margin:45px auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+```
+
+
+
 ## 1.12 Conhecendo o CSS Box Shadow
 
 ## 1.13 Animando com CSS
