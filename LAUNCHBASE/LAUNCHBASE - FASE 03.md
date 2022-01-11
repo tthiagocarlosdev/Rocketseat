@@ -540,6 +540,28 @@ No **style.css** adicionar o grid:
 
 ## 1.12 Conhecendo o CSS Box Shadow
 
+No **style.css** adicionar uma **borda/sombra** ao card:
+
+```css
+.card {
+  background-color: white;
+  width:800px;
+  height:400px;
+
+  /* espaçamento ao centro */
+  margin:45px auto;
+
+  /* grid dividido ao meio*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  /* sombra */
+  box-shadow: 0px 10px 6px -2px rgba(0, 0, 0, 0.4);
+}
+```
+
+
+
 ## 1.13 Animando com CSS
 
 # 2. Cadastro de Instrutores
