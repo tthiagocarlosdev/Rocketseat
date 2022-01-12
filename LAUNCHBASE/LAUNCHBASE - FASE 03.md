@@ -695,6 +695,196 @@ Sendo assim, a configuração do nosso **card** ficou assim:
 
 ## 2.1 Estruturando e estilizando dados do instrutor
 
+Na página **index.njk** começar configurando as informações que irão aparecer sobre o instrutor: Na **section.details** colocar o seguinte;
+
+```html
+<section class="details">
+    
+    <h3>Detalhes</h3>
+
+    <div class="item">
+        <div>Instrutor</div>
+        <div>Guilherme Saraiva</div>
+    </div>
+
+    <div class="item">
+        <div>Idade</div>
+        <div>29</div>
+    </div>
+
+    <div class="item">
+        <div>Sexo</div>
+        <div>Masculino</div>
+    </div>
+    
+    <div class="item">
+        <div>Acompanhamento</div>
+        <div>
+          <span>Musculação</span>
+          <span>Crossfit</span>
+        </div>
+    </div>
+
+    <div class="item">
+        <div>Desde</div>
+        <div>01/01/2022</div>
+    </div>
+
+  </section>
+```
+
+Agora no **style.css**, estilizar essa **section.details**:
+
+Configurar o **height** do **card** para ter uma altura mínima, e assim e alterando a sua alturar de acordo com a quantidade de informações que aparecem na tela:
+
+```css
+.card {
+  background-color: white;
+  width:800px;
+  min-height:400px;
+```
+
+Adicionar um **padding** a **section.details**:
+
+```css
+.details {
+  padding: 32px;
+}
+```
+
+Estilizar cada **item** dentro da **section.details**:
+
+```css
+.details .item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 16px 0;
+}
+```
+
+Agora vamos tirar borda inferior do último elemento/item da **section.details**:
+
+```css
+.details .item:last-child {
+  border: none;
+}
+```
+
+Para estilizar apenas a primeira **div** de cada **item** dentro da **section.details**:
+
+```css
+.details .item div:nth-child(1) {
+  font-size: 14px;
+  line-height:24px;
+  color: #777;
+  letter-spacing:0.7px;
+  font-weight: normal;
+}
+```
+
+​	Para estilizar a segunda **div** dentro de cada **item** dentro da **section.details**:
+
+```css
+.details .item div:nth-child(2) {
+  color: #555;
+  font-weight: bold;
+  font-size: 18px;
+}
+```
+
+Aplicando a mesma estilização no **h3**:
+
+```css
+.details h3,
+.details .item div:nth-child(1) {
+  font-size: 14px;
+  line-height:24px;
+  color: #777;
+  letter-spacing:0.7px;
+  font-weight: normal;
+}
+```
+
+Agora estilizando o **h3** individualmente:
+
+```css
+.details h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--primary-color)
+}
+```
+
+Como ficou a estilização do **card** até o momento:
+
+ ```css
+ /* === CARD ===*/
+ .card {
+   background-color: white;
+   width:800px;
+   min-height:400px;
+ 
+   /* espaçamento ao centro */
+   margin:45px auto;
+ 
+   /* grid dividido ao meio*/
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+ 
+   /* sombra */
+   box-shadow: 0px 10px 6px -2px rgba(0, 0, 0, 0.4);
+ 
+   /* animation */
+   animation: up 2000ms ease-out;
+ }
+ 
+ @keyframes up {
+   from {
+     opacity: 0;
+     transform: translateY(15px);
+   }
+   to {
+     opacity: 1;
+   }
+ }
+ 
+ /* details */
+ .details {
+   padding: 32px;
+ }
+ 
+ .details .item {
+   border-bottom: 1px solid rgba(0,0,0,0.1);
+   padding: 16px 0;
+ }
+ 
+ .details .item:last-child {
+   border: none;
+ }
+ 
+ .details h3,
+ .details .item div:nth-child(1) {
+   font-size: 14px;
+   line-height:24px;
+   color: #777;
+   letter-spacing:0.7px;
+   font-weight: normal;
+ }
+ 
+ .details .item div:nth-child(2) {
+   color: #555;
+   font-weight: bold;
+   font-size: 18px;
+ }
+ 
+ .details h3 {
+   text-transform: uppercase;
+   font-weight: bold;
+   color: var(--primary-color)
+ }
+ ```
+
+
+
 ## 2.2 Estilizando labels
 
 ## Desafio 4-2
