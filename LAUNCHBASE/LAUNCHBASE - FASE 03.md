@@ -564,6 +564,133 @@ No **style.css** adicionar uma **borda/sombra** ao card:
 
 ## 1.13 Animando com CSS
 
+Criando uma animação na imagem do **card**:
+
+```css
+.card {
+  background-color: white;
+  width:800px;
+  height:400px;
+
+  /* espaçamento ao centro */
+  margin:45px auto;
+
+  /* grid dividido ao meio*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  /* sombra */
+  box-shadow: 0px 10px 6px -2px rgba(0, 0, 0, 0.4);
+
+  /* animation */
+  animation-name: up;
+  animation-duration: 2000ms;
+  animation-timing-function: ease-out;
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+```
+
+Ainda existe várias propriedade do **animation**:
+
+- Animação suave:
+
+```css
+animation-timing-function: ease-out;
+```
+
+- Tempo para iniciar a animação:
+
+```css
+animation-delay:1;
+```
+
+- Para manter o card na tela após terminar a animação:
+
+```css
+animation-fill-mode: forwards;
+```
+
+- Para começar com a animação pausada e depois ela ser ativada por algum botão, configurando com o JavaScript. Em vez do **paused**, pode ser usado a função **running** para manter a animação funcionando:
+
+```css
+animation-play-state:paused;
+```
+
+- Para a animação ser executada de modo reverso:
+
+```css
+animation-direction: reverse;
+```
+
+- Tipo da interação, para determinar a quantidade de vezes que ela irá acontecer. Pode ser infinitamente, **infinite**, ou o numeral com a quantidade de vezes que você quer executar a animação:
+
+```css
+animation-iteration-count: infinite;
+```
+
+- Para pudar a ordem de começo da animação. A opção **alternate** fica variando entre várias posições:
+
+```css
+animation-direction: reverse;
+```
+
+Na nossa aplicação iremos usar apenas essas propriedades:
+
+```css
+animation-name: up;
+animation-duration: 2000ms;
+animation-timing-function: ease-out;
+```
+
+Que pode serem resumidas em apenas uma linha:
+
+```css
+animation: up 2000ms ease-out;
+```
+
+Sendo assim, a configuração do nosso **card** ficou assim:
+
+```css
+/* === CARD ===*/
+.card {
+  background-color: white;
+  width:800px;
+  height:400px;
+
+  /* espaçamento ao centro */
+  margin:45px auto;
+
+  /* grid dividido ao meio*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  /* sombra */
+  box-shadow: 0px 10px 6px -2px rgba(0, 0, 0, 0.4);
+
+  /* animation */
+  animation: up 2000ms ease-out;
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+```
+
 # 2. Cadastro de Instrutores
 
 ## 2.1 Estruturando e estilizando dados do instrutor
