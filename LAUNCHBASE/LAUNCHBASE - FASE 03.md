@@ -887,6 +887,34 @@ Como ficou a estilização do **card** até o momento:
 
 ## 2.2 Estilizando labels
 
+Vamos começar adiocionando outra variáve de cor no **style.css**:
+
+```css
+:root {
+  --primary-color: #7159c1;
+  --secondary-color: #F7DF1E;
+}
+```
+
+Depois vamos estilizar o labels nos elementos **span** dentro da **div acompanhamento**:
+
+```css
+.details .item span {
+  padding:8px 16px;
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  color:#777;
+  margin-right: 4px;
+  margin-top: 8px;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+```
+
+
+
 ## Desafio 4-2
 
 ## 2.3 Trabalhando com formulários HTML
