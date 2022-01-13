@@ -2,6 +2,8 @@
 
 :root {
   --main-color: #1f91fb;
+  --secondary-color: #F7DF1E;
+  --third-color: #777;
 }
 
 * {
@@ -59,4 +61,80 @@ header {
 .links a:hover::after {
   width: 100%;
   transition: width 700ms ease-in-out;
+}
+
+.card {
+  background-color: white;
+  width: 800px;
+  min-height: 400px;
+  
+  /* espaçamanento ao centro */
+  margin: 45px auto;
+
+  /* grid dividido na proporção 40%/60% */
+  display: grid;
+  grid-template-columns: 40% 60%;
+
+  /* sombra */
+  box-shadow: 0px 10px 6px -2px rgba(0, 0, 0, 0.4);
+
+  /* animation */
+  animation: up 2000ms ease-out;
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.details {
+  padding: 32px;
+}
+
+.details .item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 16px;
+}
+
+.details .item:last-child {
+  border: none;
+}
+
+.details h3,
+.details .item div:nth-child(1) {
+  font-size: 14px;
+  line-height:24px;
+  color: var(--third-color);
+  letter-spacing:0.7px;
+  font-weight: normal;
+}
+
+.details .item div:nth-child(2) {
+  font-size: 18px;
+  color: #555;
+  font-weight: bold;
+}
+
+.details h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--main-color)
+}
+
+.details .item span {
+  padding:8px 16px;
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  color: var(--third-color);
+  margin-right: 4px;
+  margin-top: 8px;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
 }

@@ -463,9 +463,9 @@ No terminal digitar ` Ctrl + C` para parar o servidor e instalar as dependência
 $ npm install browser-sync npm-run-all -D
 ```
 
-browser-sync irá fazer o reload da aplicação quando mudar algum arquivo;
+**browser-sync** irá fazer o **reload** da aplicação quando mudar algum arquivo;
 
-run-all irá rodar diversos serviços ao mesmo tempo.
+**run-all** irá rodar diversos serviços ao mesmo tempo.
 
 No arquivo **package.json** fazer as seguintes alterações no **script**:
 
@@ -479,7 +479,7 @@ No arquivo **package.json** fazer as seguintes alterações no **script**:
 
 Após isso executar no terminal `npm start`
 
-Você perceberá que a porta mudou para a porta 3000. Agora não será preciso ficar recarregando a página toda vez que realizar alguma alteração. O reload resá automático.
+Você perceberá que a porta mudou para a porta 3000. Agora não será preciso ficar recarregando a página toda vez que realizar alguma alteração. O reload será automático.
 
 ## 1.10 Criando o container de conteúdo
 
@@ -637,7 +637,7 @@ animation-direction: reverse;
 animation-iteration-count: infinite;
 ```
 
-- Para pudar a ordem de começo da animação. A opção **alternate** fica variando entre várias posições:
+- Para mudar a ordem de começo da animação. A opção **alternate** fica variando entre várias posições:
 
 ```css
 animation-direction: reverse;
@@ -887,7 +887,7 @@ Como ficou a estilização do **card** até o momento:
 
 ## 2.2 Estilizando labels
 
-Vamos começar adiocionando outra variáve de cor no **style.css**:
+Vamos começar adiocionando outra variável de cor no **style.css**:
 
 ```css
 :root {
@@ -916,6 +916,38 @@ Depois vamos estilizar o labels nos elementos **span** dentro da **div acompanha
 
 
 ## Desafio 4-2
+
+## :rocket: Sobre o desafio
+
+Nessa etapa você deve utilizar o browser-sync e criar um card para apresentação das informações do professor.
+
+### Browser-sync
+
+Utilize as libs `browser-sync` e `npm-run-all` e rode os processos da sua aplicação e do `browser-sync` em paralelo.
+
+### Card
+
+Esse componente deve ser dividido em duas seções: imagem e detalhes. As seguintes informações são obrigatórias:
+
+- Imagem randômica de uma coleção de professores (utilize a api do unsplash);
+- Nome completo;
+- Idade;
+- Grau de escolaridade (ex.: Doutorado);
+- Tipo de aula (presencial ou à distância);
+- Acompanhamento (ex.: Matemática e Física);
+- Desde (data de cadastro na plataforma).
+
+### Estilização
+
+Você tem liberdade para escolher a estilização que preferir para esse desafio, mas alguns pontos são obrigatórios:
+
+- A imagem deve ocupar 40% do card e os detalhes 60%.
+- Utilize o seletor `first-child` e `border-top` para estilizar as divisórias entre os items.
+- Utilize o seletor `nth-child()` para estilizar o label (ex.: Desde) e valor (ex.: 02/02/2020) do item.
+- Utilize o `keyframes` e o `animation` para fazer uma animação do card.
+- Utilize o `box-shadow` para aplicar uma sombra no card.
+
+
 
 ## 2.3 Trabalhando com formulários HTML
 
