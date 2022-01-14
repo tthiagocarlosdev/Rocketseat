@@ -951,6 +951,208 @@ Você tem liberdade para escolher a estilização que preferir para esse desafio
 
 ## 2.3 Trabalhando com formulários HTML
 
+Vamos agora criar o formulário de cadastro dos instrutores. Para isso, vamos criar um novo arquivo dentro do diretório **instructors**, chamado **create.njk**.
+
+Copie tudo que está no arquivo **index.njk** para o arquivo **create.njk**.
+
+No VSCode, aperte **Ctrl + p** e digite **routes.js** para acessar o arquivo de rotas.
+
+Neste arquivo **routes.js** vamos criar uma rota para o arquivo **create.njk**.
+
+```javascript
+routes.get('/instructors/create', function (req, res) {
+  return res.render("instructors/create")
+})															
+```
+
+Agora digita o endereço abaixo para acessar a página **create.njk**:
+
+```http
+http://localhost:3000/instructors/create
+```
+
+No arquivo **create.njk** mudar o elemento da **div.card** para **form**:
+
+```html
+<form class="card" method="POST" action="/instructors">
+</form>
+```
+
+Adicionar os atributos **method** e **action** ao elemento **form**:
+
+```html
+ <form class="card" method="POST" action="/instructors">
+ </form>
+```
+
+No arquivo **routes** criar a rota para o **post**:
+
+```javascript
+routes.post('/instructors', function (req, res) {
+  return res.send('recebido')
+})
+```
+
+No arquivos **create** começar a construir o formulário, alterando o título **h3** e adicionando **input**:
+
+```html
+<h3>Novo Instrutor</h3>
+
+   <div class="item">
+        <div>Avatar URL</div>
+        <div>
+          <input 
+            type="url"
+            name="avatar_url"
+            placeholder="http://"
+          >
+        </div>
+    </div>
+
+    <div class="item">
+        <div>Instrutor</div>
+        <div>
+          <input 
+            type="text"
+            name="name"
+            placeholder="Nome do Instrutor"
+          >
+        </div>
+    </div>
+```
+
+Alterar a **div** **idade** para **data de nascimento** e colocar um **input de data**:
+
+```html
+<div class="item">
+        <div>Data de nascimento</div>
+        <div>
+          <input
+            type="date"
+            name="birth"
+          >
+        </div>
+ </div>
+```
+
+A **div sexo** será colocado um **input radio**, com o **checked** para ser obrigatório a seleção de no mínimo uma opção:
+
+```html
+<div class="item">
+        <div>Sexo</div>
+        <div>
+          <span><input type="radio" name="gender" value="M" checked > Masculino</span>
+          <span><input type="radio" name="gender" value="F"> Feminino</span>
+        </div>
+</div>
+```
+
+Alterar a **div Acompanhamento** para **área de atuação**:
+
+```html
+ <div class="item">
+        <div>Área de atuação</div>
+        <div>
+          <input 
+            type="text" 
+            name="services"
+            placeholder="Separe os serviços prestados por vírgula"
+          >
+        </div>
+ </div>
+```
+
+Apagar a **div desde**:
+
+```html
+ <div class="item">
+        <div>Desde</div>
+        <div>01/01/2022</div>
+ </div>
+```
+
+Adicionar um **botão** de tipo **submit** ao final:
+
+```html
+<button type="submit">Salvar</button>
+```
+
+Agora a página de formulário completa:
+
+```html
+{% extends "layout.njk" %}
+
+{% block content %}
+<form class="card" method="POST" action="/instructors">
+  <section 
+  class="avatar" 
+  style="background: url(https://source.unsplash.com/collection/8325170/500x500) no-repeat center center / cover"></section>
+  <section class="details">
+    
+    <h3>Novo Instrutor</h3>
+
+    <div class="item">
+        <div>Avatar URL</div>
+        <div>
+          <input 
+            type="url"
+            name="avatar_url"
+            placeholder="http://"
+          >
+        </div>
+    </div>
+
+    <div class="item">
+        <div>Instrutor</div>
+        <div>
+          <input 
+            type="text"
+            name="name"
+            placeholder="Nome do Instrutor"
+          >
+        </div>
+    </div>
+
+    <div class="item">
+        <div>Data de nascimento</div>
+        <div>
+          <input
+            type="date"
+            name="birth"
+          >
+        </div>
+    </div>
+
+    <div class="item">
+        <div>Sexo</div>
+        <div>
+          <span><input type="radio" name="gender" value="M" checked > Masculino</span>
+          <span><input type="radio" name="gender" value="F"> Feminino</span>
+        </div>
+    </div>
+    
+    <div class="item">
+        <div>Área de atuação</div>
+        <div>
+          <input 
+            type="text" 
+            name="services"
+            placeholder="Separe os serviços prestados por vírgula"
+          >
+        </div>
+    </div>
+
+    <button type="submit">Salvar</button>
+
+  </section>
+
+</form>
+
+{% endblock content %}
+```
+
+
+
 ## 2.4 Estilizando o formulário
 
 ## 2.5 Recebendo dados do Front end com req.body
