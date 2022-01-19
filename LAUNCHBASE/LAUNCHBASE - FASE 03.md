@@ -1259,11 +1259,47 @@ server.use(express.urlencoded({ extended: true }))
 
 
 
-
-
-
-
 ## 2.6 Validando dados no Back end
+
+Voltando ao arquivo **routes.js**, na **routes.post**, criar uma variável com ela recebendo uma função constructors:
+
+```javascript
+routes.post('/instructors', function (req, res) {
+  // req.query
+  // req.body
+  
+  const keys = Object.keys(req.body)
+  return res.send(keys)
+
+})
+```
+
+Após isso, criar o sistema de validação de dados, antes de ser enviado para o back-end:
+
+```javascript
+routes.post('/instructors', function (req, res) {
+  // req.query
+  // req.body
+  //{"avatar_url":"http://thiagocarlos.silva.com","name":"Thiago Carlos","birth":"2000-01-19","gender":"M","services":"Musculação, crossfit"}zzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  
+  // keys
+  //["avatar_url","name","birth","gender","services"]
+  
+  const keys = Object.keys(req.body)
+  for(key of keys) {
+    // req.body.key = ""
+    if(req.body[key] == "") {
+      return res.send('Please, fill all fields!')
+    }
+
+  }
+
+  return res.send(req.body)
+
+})
+```
+
+
 
 ## 2.7 Separando as funções das rotas
 
