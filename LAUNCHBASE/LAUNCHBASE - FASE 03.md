@@ -1155,6 +1155,52 @@ Agora a página de formulário completa:
 
 ## 2.4 Estilizando o formulário
 
+Vamos começar a estilizar todos os input's alterando a sua largura "**width**" e tirando a linha **outline** (linha que aparece quando clicamos em cada input:
+
+```css
+input {
+  width: 100%;
+  outline: none;
+  color: #555;
+  font-weight: bold;
+  font-size: 18px;
+}
+```
+
+Perceba que o **input** do tipo **radio** ficou bastante alterado, para voltar a configuração original, basta fazer a seguinte estilização:
+
+```css
+input[type="radio"] {
+  width: initial;
+  margin-right: 4px;
+}
+```
+
+Estilizando o **placeholder**:
+
+```css
+input::placeholder {
+  font-size: 16px;
+  font-weight: normal;
+}
+```
+
+Estilizando o **botão submit**:
+
+```css
+button[type="submit"] {
+  padding: 8px 32px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 32px;
+  width: 100%;
+}
+```
+
+
+
 ## 2.5 Recebendo dados do Front end com req.body
 
 ## 2.6 Validando dados no Back end
