@@ -1303,6 +1303,60 @@ routes.post('/instructors', function (req, res) {
 
 ## 2.7 Separando as funções das rotas
 
+Criar um novo arquivo e nomeá-lo de **instructors.js**;
+
+Dentro desse arquivo criar os módulos para exportar as funções:
+
+```javascript
+// create
+exports.post = function (req. res){
+  
+}
+// update
+
+// delete
+```
+
+Ir até o arquivo **routes.js** e recortar a função do post e colar ela no arquivos **instructors**:
+
+```javascript
+// create
+exports.post = function (req, res) {
+  // req.query
+  // req.body
+  //{"avatar_url":"http://thiagocarlos.silva.com","name":"Thiago Carlos","birth":"2000-01-19","gender":"M","services":"Musculação, crossfit"}zzzzzzzzzzzzzzzzzzzzzzzzzzzz
+  
+  // keys
+  //["avatar_url","name","birth","gender","services"]
+  
+  const keys = Object.keys(req.body)
+  for(key of keys) {
+    // req.body.key = ""
+    if(req.body[key] == "") {
+      return res.send('Please, fill all fields!')
+    }
+
+  }
+
+  return res.send(req.body)
+
+}
+```
+
+No arquivos **routes.js** devemos chamar o arquivo **instructors**:
+
+```javascript
+const instructors = require('./instructors')
+```
+
+Na rota post, adicionar a variável *instructors**:
+
+```javascript
+routes.post('/instructors', instructors.post)
+```
+
+
+
 ## 2.8 Usando Node fs e entendendo callback function
 
 ## 2.9 Trabalhando com dados em JSON
