@@ -1199,9 +1199,69 @@ button[type="submit"] {
 }
 ```
 
+Como ficou a estilização completa do formulário: 
+
+```css
+/* FORM */
+
+input {
+  width: 100%;
+  outline: none;
+  color: #555;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+input[type="radio"] {
+  width: initial;
+  margin-right: 4px;
+}
+
+input::placeholder {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+button[type="submit"] {
+  padding: 8px 32px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 32px;
+  width: 100%;
+}
+```
+
 
 
 ## 2.5 Recebendo dados do Front end com req.body
+
+No arquivo **routes.js** alterar o **return** da rota do formulário:
+
+```javascript
+routes.post('/instructors', function (req, res) {
+  // req.query
+  // req.body
+  
+  return res.send(req.body)
+
+})
+```
+
+No arquivo **server.js** adicionar mais uma configuração:
+
+Essa linha será responsável para fazer funcionar o **req.body** configurado no **routes.js**.
+
+```javascript
+server.use(express.urlencoded({ extended: true }))
+```
+
+
+
+
+
+
 
 ## 2.6 Validando dados no Back end
 
