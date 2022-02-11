@@ -266,6 +266,72 @@ Mudar a extensão do arquivo **index.js** da pasta **src** para **index.jsx** qu
 
 ## 1.5 Configurando Webpack
 
+Webpack pega alguns formtos de arquivos que não são suportados pelos browsers (.hbs, .sass, .cjs, .png, .jpg) e converte em formatos compatíveis (.js, .css, .jpg, .png)
+
+Para instalar o **webpack** e **webpack-cli**:
+
+```tex
+$ yarn add webpack webpack-cli -D
+```
+
+Criar um documento de configuração na raiz de nome **webpack.config.js**
+
+```js
+const path = require('path')
+
+module.exports = {
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }
+    ],
+  }
+};
+```
+
+Adicionar babel loader na biblioteca:
+
+```tex
+$ yarn add babel-loader -D
+```
+
+Na pasta **src** criar outro arquivo de nome **App.jsx**
+
+```js
+export function App() {
+  return <h1>Hello World!</h1>; 
+}
+```
+
+No **index.jsx** importar o **App.jsx**:
+
+```javascript
+import React from "react";
+import { App } from './App'
+
+```
+
+No terminal, executar o **webpack**:
+
+```tex
+$ yarn webpack
+```
+
+Observar que o arquivo **bundle.js** na pasta **dist** agora está impossível de ler, pois tudo o que foi comfigurado está pronto para ser executado no browser.
+
+
+
 ## 1.6 Estrutura do ReactJS
 
 ## 1.7 Servindo HTML estático
