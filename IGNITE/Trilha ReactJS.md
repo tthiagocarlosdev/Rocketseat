@@ -148,11 +148,121 @@ Altere apenas o título do **html**:
 
 
 
-
-
-
-
 ## 1.4 Configurando Babel
+
+**Babel** converte nosso código para uma maneira em que todos os browsers e todo ambiente da nossa aplicação consiga entender nosso código. Na psta do projeto, instalar o **babel**.
+
+```tex
+$ yarn add @babel/core @babel/cli @babel/preset-env -D
+```
+
+```json
+{
+  "name": "01-github-explorer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11"
+  }
+}
+
+```
+
+Após a instalação, criar o arquivo **babel.config.js** no projeto.
+
+Dentro do arquivo **babel.config.js** exportar a configuração do babel. 
+
+```js
+module.exports = {
+  presets: [
+    '@babel/preset-env'
+  ]
+}
+```
+
+Agora na pasta **src** criar um arquivo **index.js** e adicionar o código abaixo.
+
+```javascript
+const user = {
+  name: 'Diego',
+}
+
+console.log(user.address?.street)
+```
+
+Para fazer com o Babel converta o código, abra o projeto no terminal e execute o seguinte comando:
+
+```tex
+$ yarn babel src/index.js --out-file dist/bundle.js
+```
+
+ Será criada uma pasta de nome **dist** com o arquivo **bundle.js**.
+
+```javascript
+"use strict";
+
+var _user$address;
+
+var user = {
+  name: 'Diego'
+};
+console.log((_user$address = user.address) === null || _user$address === void 0 ? void 0 : _user$address.street);
+
+```
+
+Configurar o **babel** para entender código react dentro do projeto:
+
+```tex
+$ yarn add @babel/preset-react -D
+```
+
+No arquivo **babel.config.js** adicionar o preset-react:
+
+```js
+module.exports = {
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-react'
+  ]
+}
+```
+
+No arquivo **index.js** na pasta **src**:
+
+```javascript
+import React from "react";
+
+function App() {
+  return <h1>Hello World!</h1>; 
+}
+```
+
+Executar o babel no terminal novamente.
+
+Olha o **bundle.js** omo ficou:
+
+```javascript
+"use strict";
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function App() {
+  return /*#__PURE__*/_react["default"].createElement("h1", null, "Hello World!");
+}
+```
+
+Mudar a extensão do arquivo **index.js** da pasta **src** para **index.jsx** que é o padrão do html dentro do JavaScript.
+
+
 
 ## 1.5 Configurando Webpack
 
