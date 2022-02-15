@@ -52,7 +52,7 @@ $ mkdir 01-github-explorer
 
 Após criar a pasta, acessá-la.
 
-Inicializar o repositório criandio o package.json
+Inicializar o repositório criando o **package.json**
 
 ```tex
 $ yarn init -y
@@ -64,7 +64,7 @@ Pode também ser criado pelo npm:
 $ npm init -y
 ```
 
-No package.json encontramos as informações principais do nosso projeto.
+No **package.json** encontramos as informações principais do nosso projeto.
 
 ```json
 {
@@ -82,7 +82,7 @@ Vamos instalrar bibliotecas:
 $ yarn add react
 ```
 
-Após a instalação do react o **package.json** será modificado e será criado a pasta **node_modules**.
+Após a instalação do **react** o **package.json** será modificado e será criado a pasta **node_modules**.
 
 ```json
 {
@@ -150,7 +150,7 @@ Altere apenas o título do **html**:
 
 ## 1.4 Configurando Babel
 
-**Babel** converte nosso código para uma maneira em que todos os browsers e todo ambiente da nossa aplicação consiga entender nosso código. Na psta do projeto, instalar o **babel**.
+**Babel** converte nosso código para uma maneira em que todos os browsers e todo ambiente da nossa aplicação consiga entender nosso código. Na pasta do projeto, instalar o **babel**.
 
 ```tex
 $ yarn add @babel/core @babel/cli @babel/preset-env -D
@@ -197,7 +197,7 @@ const user = {
 console.log(user.address?.street)
 ```
 
-Para fazer com o Babel converta o código, abra o projeto no terminal e execute o seguinte comando:
+Para fazer com que o Babel converta o código, abra o projeto no terminal e execute o seguinte comando:
 
 ```tex
 $ yarn babel src/index.js --out-file dist/bundle.js
@@ -266,7 +266,7 @@ Mudar a extensão do arquivo **index.js** da pasta **src** para **index.jsx** qu
 
 ## 1.5 Configurando Webpack
 
-Webpack pega alguns formtos de arquivos que não são suportados pelos browsers (.hbs, .sass, .cjs, .png, .jpg) e converte em formatos compatíveis (.js, .css, .jpg, .png)
+Webpack pega alguns formatos de arquivos que não são suportados pelos browsers (.hbs, .sass, .cjs, .png, .jpg) e converte em formatos compatíveis (.js, .css, .jpg, .png)
 
 Para instalar o **webpack** e **webpack-cli**:
 
@@ -300,7 +300,7 @@ module.exports = {
 };
 ```
 
-Adicionar babel loader na biblioteca:
+Adicionar **babel loader** na biblioteca:
 
 ```tex
 $ yarn add babel-loader -D
@@ -328,13 +328,191 @@ No terminal, executar o **webpack**:
 $ yarn webpack
 ```
 
-Observar que o arquivo **bundle.js** na pasta **dist** agora está impossível de ler, pois tudo o que foi comfigurado está pronto para ser executado no browser.
+Observar que o arquivo **bundle.js** na pasta **dist** agora está impossível de ler, pois tudo o que foi configurado está pronto para ser executado no browser.
 
 
 
 ## 1.6 Estrutura do ReactJS
 
+No arquivo **index.html** da pasta **public**, adicionar uma div com id root no body:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Explorer</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+```
+
+No arquivo **index.jsx** da pasta **src**, importar o **react-dom**:
+
+```js
+import { render } from "react-dom";
+```
+
+Configurar a renderização:
+
+```html
+render(<h1>Test</h1>, document.getElementById('root'))
+```
+
+Executar o webpack no terminal
+
+```tex
+$ yarn webpack
+```
+
+No **index.html** adicionar um **script**:
+
+```html
+<script src="../dist/bundle.js"></script>
+```
+
+No **index.jsx** importar o react:
+
+```javascript
+import React from 'react';
+import { render } from "react-dom";
+import { App } from './App'
+
+render(<h1>Test</h1>, document.getElementById('root'))
+```
+
+Executar o webpack e abrir o index.html no browser.
+
+A importação do react não precisa ser realizada em todo arquivo .html, portanto pode se excluir a linha abaixo do arquio **index.html**:
+
+```js
+import React from 'react';
+```
+
+No arquivo **babel.config.js** se faz a configuração do react:
+
+```js
+module.exports = {
+  presets: [
+    '@babel/preset-env',
+    ['@babel/preset-react', {
+      runtime: 'automatic'
+    }]
+  ]
+}
+```
+
+Agora no **index.jsx** podemos renderizar o **App**, ao invés de código html:
+
+```js
+render(<App />, document.getElementById('root'))
+```
+
+No arquivo **webpack.config.js** adicionar o **mode development**:
+
+```js
+const path = require('path')
+
+module.exports = {
+  mode: 'development',
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }
+    ],
+  }
+};
+```
+
+
+
 ## 1.7 Servindo HTML estático
+
+Existe um plugin do webpack o qual injeta o arquivo JavaScript no nosso HTML. Para isso, no arquivo **index.html** exclua o **script**:
+
+```html
+<script src="../dist/bundle.js"></script>
+```
+
+No terminal na raiz da aplicação, instalar o html webpack plugin como uma dependência de desenvolvimento:
+
+```shell
+$ yarn add html-webpack-plugin -D
+```
+
+No arquivo **webpack.config.js** importar o **html webpack plugin**:
+
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+```
+
+Cria: uma propriedade plugins:
+
+```javascript
+plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ],
+```
+
+Como ficou o arquivo **webpack.config.js**:
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  mode: 'development',
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }
+    ],
+  }
+};
+```
+
+Agora executar o webpack:
+
+```shell
+$ yarn webpack
+```
+
+Na pasta **dist** será criado o arquivo **index.html** o qual já terá o **scrip** azendo referência ao **bundle**. Abrir esse arquivo **index.html** no browser. Tudo isso serve para melhorar o fluxo da nossa aplicação.
+
+
 
 ## 1.8 Webpack Dev Server
 
