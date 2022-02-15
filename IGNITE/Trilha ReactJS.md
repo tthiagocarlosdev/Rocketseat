@@ -655,6 +655,121 @@ export function App() {
 
 ## 1.10 Ambiente dev e produção
 
+Agora vamos configurar um ambiente de desenvolvimento e um de produção para o webpack funcionar de formas diferentes.
+
+No **webpack.config.js** configurar criando a variável **isDevelopment** e alterando o **mode** e o **devtool**:
+
+```js
+const isDevelopment = process.env.NODE_ENV !== 'production'
+```
+
+```js
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
+```
+
+No terminal vamos instalar o **cross-env** na nossa aplicação, que serve para definirmos variáveis ambiente independentemente do nosso sistema operacional:
+
+```shell
+$ yarn add cross-env -D
+```
+
+No **package.json** da nossa aplicação vamos criar um script de desenvolvimento e outro de construção:
+
+```json
+"scripts": {
+    "dev": "webpack serve",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+```
+
+Agora ao executar a aplicação teremos duas formas:
+
+Para ambiente de desevolvimento:
+
+```shell
+$ yarn dev
+```
+
+Para ambiente de produção:
+
+```shell
+$ yarn build
+```
+
+**webpack.config.js** completo:
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
+module.exports = {
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  devServer: {
+    static: path.resolve(__dirname, 'public')
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }
+    ],
+  }
+};
+```
+
+**package.json** completo:
+
+```json
+{
+  "name": "01-github-explorer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack serve",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
+
+```
+
+
+
 ## 1.11 Importando arquivos CSS
 
 ## 1.12 Utilizando SASS
