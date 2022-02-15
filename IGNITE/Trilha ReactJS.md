@@ -591,6 +591,68 @@ module.exports = {
 
 ## 1.9 Utilizando source maps
 
+Digamos que em nossa aplicação ocorreu um erro de digitação, nesse caso vamos criar um erro no **App.jsx**:
+
+```js
+export function App() {
+  throw new Error('Eita Giovana, o forninho caiu!')
+
+  return <h1>Hello ReactJS!</h1>; 
+}
+```
+
+No browser a aplicação não vai funcionar e ao fazer a inspeção, o erro aparecerá na linha 8, sendo que na aplicação ele está na linha 2, além de aparecer de forma muito confusa.
+
+```tex
+Uncaught Error: Eita Giovana, o forninho caiu! App.jsx:8 
+```
+
+Ao clicar no erro:
+
+```js
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "App": () => (/* binding */ App)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+function App() {
+  throw new Error('Eita Giovana, o forninho caiu!');
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
+    children: "Hello ReactJS!"
+  });
+}
+
+```
+
+Para corrigir, vamos configurar o **source-map**.
+
+No arquivo **webpack.config.js** adicionar o **devtool source-map** abaixo do **mode**:
+
+```js
+devtool: 'eval-source-map',
+```
+
+No terminal, cancela a execução do webpack com **Ctrl+c** e executa novamente com ` $ yarn webpack serve`.
+
+Volta no browser e dá um F5. Agora o erro será apresentado na linha 2:
+
+```tex
+Uncaught Error: Eita Giovana, o forninho caiu! App.jsx?1591:2
+```
+
+Ao clicar no erro, o código estará do mesmo jeito que você escreveu na aplicação:
+
+```js
+export function App() {
+  throw new Error('Eita Giovana, o forninho caiu!')
+
+  return <h1>Hello ReactJS!</h1>; 
+}
+```
+
+
+
 ## 1.10 Ambiente dev e produção
 
 ## 1.11 Importando arquivos CSS
