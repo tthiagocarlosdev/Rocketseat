@@ -516,6 +516,79 @@ Na pasta **dist** será criado o arquivo **index.html** o qual já terá o **scr
 
 ## 1.8 Webpack Dev Server
 
+No terminal, na raiz da aplicação, instalar o **dev-server**:
+
+ ```shell
+ $ yarn add webpack-dev-server -D
+ ```
+
+No arquivo **webpack.config.js** fazer a configuração o **ev-server**:
+
+```js
+devServer: {
+    static: path.resolve(__dirname, 'public')
+  },
+```
+
+Após isso, basta ir no terminal e executar o comando abaixo:
+
+```shell
+$ yarn webpack serve
+```
+
+Ao executar o comando você notará que no terminal terá um **endereço local host** onde a aplicação vai ser executada de forma contínua, acesse o endereço:
+
+```sh
+<i> [webpack-dev-server] Project is running at:
+<i> [webpack-dev-server] Loopback: http://localhost:8080/
+```
+
+Agora qualquer alteração realizada na aplicação, será carregada automaticamente. Faça um teste alterando o h1 do arquivo **App.jsx** para *Hello ReactJS* e veja a mudança acontecer automaticamente no browser.
+
+```js
+export function App() {
+  return <h1>Hello ReactJS!</h1>; 
+}
+```
+
+Arquivo **webpack.config.js** completo:
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  mode: 'development',
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  devServer: {
+    static: path.resolve(__dirname, 'public')
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      }
+    ],
+  }
+};
+```
+
+
+
 ## 1.9 Utilizando source maps
 
 ## 1.10 Ambiente dev e produção
