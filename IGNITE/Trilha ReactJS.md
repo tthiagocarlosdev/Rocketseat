@@ -829,5 +829,63 @@ Agora basta executar o `yarn dev` no terminal.
 
 ## 1.12 Utilizando SASS
 
+Adicionar o sass-loader na aplicação:
 
+```shell
+$ yarn add sass-loader -D
+```
+
+No **webpack.config.js** adicionar o sass-loader:
+
+```js
+module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        test:/\.scss$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      }
+    ],
+  }
+```
+
+Renomeia o arquivo **global.css** para **global.scss**.
+
+No arquivo **App.jsx** troca a importação:
+
+```js
+import './styles/global.scss';
+
+export function App() {
+  return <h1>Hello ReactJS!</h1>; 
+}
+```
+
+Instalar o **sass* na aplicação:
+
+```shell
+$ yarn add node-sass -D
+```
+
+Executa o `yarn dev `
+
+Ir em **global.scss** e adicionar estilo em h1:
+
+```scss
+body {
+  font: Arial, Helvetica, sans-serif;
+  background-color: #333;
+  color: #fff;
+
+  h1 {
+    font-size: 80px;
+  }
+    
+}
+```
 
