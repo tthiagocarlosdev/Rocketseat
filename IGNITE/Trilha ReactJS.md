@@ -772,6 +772,61 @@ module.exports = {
 
 ## 1.11 Importando arquivos CSS
 
+Dentro da pasta **src** criar outra pasta denominada **styles**. Dentro de **styles** criar um arquivo denominado **global.css**.
+
+Em **global.css** fazer a seguinte configuração:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: Arial, Helvetica, sans-serif;
+}
+```
+
+Em **webpack.config.js** fazer a configuração para o react entender arquivos **.css** criando uma nova **rules** em **module**:
+
+```javascript
+module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        test:/\.css$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      }
+    ],
+  }
+```
+
+No terminal, na raiz da aplicação, instalar o **style-loader**  e o **css-loader**:
+
+```shell
+$ yarn add style-loader css-loader -D
+```
+
+Em **App.jsx** importar o arquivo **global.css** e apagar o erro `throw **new** *Error*('Eita Giovana, o forninho caiu!')`:
+
+```javascript
+import './styles/global.css';
+
+export function App() {
+  return <h1>Hello ReactJS!</h1>; 
+}
+```
+
+Agora basta executar o `yarn dev` no terminal.
+
+
+
 ## 1.12 Utilizando SASS
 
 
