@@ -1240,7 +1240,112 @@ Isso é o acontece quando usamos o **setCounter** no arquivo **Counter.jsx**. El
 
 ## 2.5 Fast Refresh no Webpack
 
+ No terminal, na raiz da aplicação:
 
+```shell
+$ yarn add -D @pmmmwh/react-refresh-webpack-plugin react-refresh
+```
+
+No **webpack.config.js** vamos requisitar o react-refresh numa variável:
+
+```jsx
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+```
+
+Depois adicionar nos plugins:
+
+```jsx
+plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ].filter(Boolean),
+```
+
+Em devServer:
+
+```jsx
+devServer: {
+    static: path.resolve(__dirname, 'public'),
+    hot: true,
+  },
+```
+
+Em modules rules:
+
+```js
+module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              isDevelopment && require.resolve('react-refresh/babel')
+            ].filter(Boolean)
+          }
+        },
+      },
+```
+
+**webpack.config.js** completo:
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
+module.exports = {
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
+  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  devServer: {
+    static: path.resolve(__dirname, 'public'),
+    hot: true,
+  },
+  plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ].filter(Boolean),
+  module: {
+    rules: [
+      {
+        test:/\.jsx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              isDevelopment && require.resolve('react-refresh/babel')
+            ].filter(Boolean)
+          }
+        },
+      },
+      {
+        test:/\.scss$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      }
+    ],
+  }
+};
+```
+
+Agora pare a aplicação no terminal e execute `yarn dev` novamente. Agora ao mudar algo no código, só vai alterar aquilo em que você mexeu, deixando o resto da aplicaçãodo mesmo jeito.
 
 # 3 Chamadas HTTP
 
