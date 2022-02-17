@@ -1232,6 +1232,12 @@ Agora sim, ao clicar no botão **Increment** o valor do contador será alterado.
 
 ## 2.4 A imutabilidade no React
 
+Imutabilidade diz respeito quando temos uma variável e queremos adicionar um novo valor para ela. Porém em vez de fazer isso, criamos uma nova variável, colocamos todos os valores da variável anterior dentro dela mais onovo valor. Exemplo: Digamos que temos o array **A = [ 'abc', 'def', 'ghi' ]**. Agora queremos adicionar o valor **'jlk'** dentro dela. Como na imutabilidade o valor da variável não se altera, vamos criar uma nova variável e colocar todos os valores nela. **B = [...A, 'jkl' ]**.
+
+Isso é o acontece quando usamos o **setCounter** no arquivo **Counter.jsx**. Ele cria uma nova variável **counter** que recebe a variável **counter** anterior mais 1.
+
+
+
 ## 2.5 Fast Refresh no Webpack
 
 
