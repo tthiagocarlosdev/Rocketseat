@@ -893,9 +893,9 @@ body {
 
 ## 2.1 Primeiro componente React
 
-Componentes no React são como tags no HTML. São formas de encapsular uma quatidade de código dentro de um único elemento e esse elemento tem sua própria funcionalidade, estilização e estrutura. Componentes são formas de organizarmos a aplicação.
+Componentes no React são como tags no **HTML**. São formas de encapsular uma quatidade de código dentro de um único elemento e esse elemento tem sua própria funcionalidade, estilização e estrutura. Componentes são formas de organizarmos a aplicação.
 
-Componente no React é uma função com o nome que sempre começa com a primeira letra maiúscula e essa função devolve sempre um HTML. Exemplo:
+Componente no React é uma função com o nome que sempre começa com a primeira letra **maiúscula** e essa função devolve sempre um **HTML**. Exemplo:
 
 ```jsx
 export function App() {
@@ -970,7 +970,7 @@ body {
 }
 ```
 
-Em **RepositoryList.jsx** vamos criar uma variável e usar ela dentro do HTML. Dentro do HTML colocamos o nome da variavel entre **{ }**. No caso abaixo criamos a variável **repositoryName**.
+Em **RepositoryList.jsx** vamos criar uma variável e usar ela dentro do HTML. Dentro do HTML colocamos o nome da variável entre **{ }**. No caso abaixo criamos a variável **repositoryName**.
 
 ```jsx
 const repositoryName = 'unform2';
@@ -994,6 +994,140 @@ export function RepositoryList() {
 
 
 ## 2.2 Propriedades no React
+
+Propriedades no React funcionam assim com atributos funcionam dentro de tags HTML. São informações, variáveis que podemos passar para um componente funcionar de forma diferente.
+
+Na pasta **components** crie um arquivo denominado **RepositoryItem.jsx**. Dentro deste arquivo vamos criar uma function retornando o primeiro <li/> do arquivo **RepositoryList.jsx**.
+
+```jsx
+export function RepositoryItem () {
+  return (
+    <li>
+    <strong>unform</strong>
+    <p>Forms in React</p>
+
+    <a href="">
+      Acessar repositório
+    </a>
+  </li>
+  );
+}
+```
+
+Em **RepositoryList.jsx** vamos deletar todo conteúdo dentro de **ul**, chamar **RepositoryItem** dentro de **ul**, fazer o import do arquivo **RepositoryItem** e apagar a variável **repositoryName**:
+
+```jsx
+import { RepositoryItem } from "./RepositoryItem";
+
+export function RepositoryList() {
+  return (
+    <section className="repository-list">
+      <h1>Lista de repositórios</h1>
+
+      <ul>
+        <RepositoryItem/>
+        <RepositoryItem/>
+        <RepositoryItem/>
+        <RepositoryItem/>
+      </ul>
+    </section>
+  );
+}
+```
+
+Agora dentro do primeiro **RepositoryItem** vamos passar um **nome** o qual será acessado na função **RepositoryItem** e funcionará como uma variável.
+
+```jsx
+<RepositoryItem repository="unform2"/>
+```
+
+Em **RepositoryItem** criamos o argumento **props**:
+
+```jsx
+export function RepositoryItem (props) {
+  return (
+    <li>
+    <strong>{props.repository ?? 'Default'}</strong>
+    <p>Forms in React</p>
+
+    <a href="">
+      Acessar repositório
+    </a>
+  </li>
+  );
+}
+```
+
+O componente do repositório item recebe o **nome** do repositório, **descrição** do repositório e o **link** do repositório. Logo no arquivo **RepositoryList.jsx** vamos passar estas três informações:
+
+```jsx
+import { RepositoryItem } from "./RepositoryItem";
+
+export function RepositoryList() {
+  return (
+    <section className="repository-list">
+      <h1>Lista de repositórios</h1>
+
+      <ul>
+        <RepositoryItem
+        	repository="unform2"
+        	description="Forms in React"
+        	link="https://github.com/unform/unform"
+        />
+        <RepositoryItem/>
+        <RepositoryItem/>
+        <RepositoryItem/>
+      </ul>
+    </section>
+  );
+}
+```
+
+Ainda podemos simplificar estas informações criando um objeto e passar ele para a lista de repositório:
+
+```jsx
+import { RepositoryItem } from "./RepositoryItem";
+
+const repository = {
+  name: 'unform',
+  description: "Forms in React",
+  link: "https://github.com/unform/unform",
+}
+
+export function RepositoryList() {
+  return (
+    <section className="repository-list">
+      <h1>Lista de repositórios</h1>
+
+      <ul>
+        <RepositoryItem repository={repository} />
+        <RepositoryItem repository={repository} />
+        <RepositoryItem repository={repository} />
+        <RepositoryItem repository={repository} />
+      </ul>
+    </section>
+  );
+}
+```
+
+Voltamos em **RepositoryItem.jsx** e como o **props.repository** não é mais um texto, temos que passar ele como objeto:
+
+```jsx
+export function RepositoryItem (props) {
+  return (
+    <li>
+    <strong>{props.repository.name ?? 'Default'}</strong>
+    <p>{props.repository.description}</p>
+
+    <a href={props.repository.link}>
+      Acessar repositório
+    </a>
+  </li>
+  );
+}
+```
+
+
 
 ## 2.3 Estado do componente
 
