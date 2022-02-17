@@ -889,3 +889,143 @@ body {
 }
 ```
 
+# 2 Conceitos Importantes
+
+## 2.1 Primeiro componente React
+
+Componentes no React são como tags no HTML. São formas de encapsular uma quatidade de código dentro de um único elemento e esse elemento tem sua própria funcionalidade, estilização e estrutura. Componentes são formas de organizarmos a aplicação.
+
+Componente no React é uma função com o nome que sempre começa com a primeira letra maiúscula e essa função devolve sempre um HTML. Exemplo:
+
+```jsx
+export function App() {
+  return <h1>Hello ReactJS!</h1>; 
+}
+```
+
+Dentro da pasta **src** vamos criar uma pasta denominada **components**. Dentro desta pasta, criar o arquivo **RepositoryList.jsx**. Dentro de **RepositoryList.jsx** vamos exportar uma função que vai devolver uma listagem de repositórios, conforme abaixo:
+
+```jsx
+export function RepositoryList() {
+  return (
+    <section className="repository-list">
+      <h1>Lista de repositórios</h1>
+
+      <ul>
+        <li>
+          <strong>unform</strong>
+          <p>Forms in React</p>
+
+          <a href="">
+            Acessar repositório
+          </a>
+        </li>
+
+        <li>
+          <strong>unform</strong>
+          <p>Forms in React</p>
+
+          <a href="">
+            Acessar repositório
+          </a>
+        </li>
+
+        <li>
+          <strong>unform</strong>
+          <p>Forms in React</p>
+
+          <a href="">
+            Acessar repositório
+          </a>
+        </li>
+      </ul>
+    </section>
+  );
+}
+```
+
+No arquivo **App.jsx** vamos alterar o **return** e fazer o **import** do arquivo **RepositoryList.jsx**:
+
+```jsx
+import { RepositoryList } from './components/RepositoryList';
+import './styles/global.scss';
+
+export function App() {
+  return <RepositoryList/>; 
+}
+```
+
+Em **global.scss** vamos alterar o estilo, conforme abaixo:
+
+```scss
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px "Helvetica Neue", Arial, sans-serif;
+  color: #121214;
+}
+```
+
+Em **RepositoryList.jsx** vamos criar uma variável e usar ela dentro do HTML. Dentro do HTML colocamos o nome da variavel entre **{ }**. No caso abaixo criamos a variável **repositoryName**.
+
+```jsx
+const repositoryName = 'unform2';
+
+export function RepositoryList() {
+  return (
+    <section className="repository-list">
+      <h1>Lista de repositórios</h1>
+
+      <ul>
+        <li>
+          <strong>{repositoryName}</strong>
+          <p>Forms in React</p>
+
+          <a href="">
+            Acessar repositório
+          </a>
+        </li>
+```
+
+
+
+## 2.2 Propriedades no React
+
+## 2.3 Estado do componente
+
+## 2.4 A imutabilidade no React
+
+## 2.5 Fast Refresh no Webpack
+
+
+
+# 3 Chamadas HTTP
+
+## 3.1 Estilização da listagem
+
+## 3.2 Utilizando o useEffect
+
+## 3.3 Listando repositórios
+
+
+
+# 4 Usando TypeScript
+
+## 4.1 Fundamentos do TypeScript
+
+## 4.2 TypeScript no ReactJS
+
+## 4.3 Componentes com TypeScript
+
+
+
+# 5 Finalizando aplicação
+
+## 5.1 Utilizando React DevTools
+
+## 5.2 Finalização do módulo
+
