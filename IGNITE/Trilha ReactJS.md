@@ -1131,6 +1131,105 @@ export function RepositoryItem (props) {
 
 ## 2.3 Estado do componente
 
+Na pasta **components** crie um novo arquivo denominado **Counter.jsx**. Dentro deste arquivo vamos colocar a seguinte function:
+
+```jsx
+export function Counter() {
+  return (
+    <div>
+      <h2>0</h2>
+      <button type="button">Increment</button>
+    </div>
+  );
+}
+```
+
+Agora no arquivo **App.jsx** vamos renderizar o **Counter.jsx**:
+
+```jsx
+import { Counter } from './components/Counter';
+import { RepositoryList } from './components/RepositoryList';
+import './styles/global.scss';
+
+export function App() {
+  return (
+    <>
+      <RepositoryList/>
+      <Counter/>
+    </>
+  )
+}
+```
+
+Agora em **Counter.jsx** criamos a **function increment** e adicionamos o evento **onClick** para disparar a função quando o botão for clicado.
+
+```jsx
+export function Counter() {
+  function increment(){
+    console.log('Incrementing')
+  }
+
+  return (
+    <div>
+      <h2>0</h2>
+      <button type="button" onClick={increment}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+Ainda em **Counter.jsx** vamos adicionar uma variável **counter** para ser o nosso contador:
+
+```jsx
+export function Counter() {
+let counter = 0;
+
+  function increment(){
+    counter += 1;
+  }
+
+  return (
+    <div>
+      <h2>{ counter }</h2>
+      <button type="button" onClick={increment}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+Note que na aplicação, ao clicar no botão **Increment**, não aconteceu nada. Para que a variável sofra alteração, no React, temos que criar uma **variável estado**, a qual vai ser monitorada pelo React e a cada mudança ela será redenderizada com o valor atualizado.
+
+Vamos fazer o **import** da **useState** do próprio react e colocá-la na função:
+
+```jsx
+import { useState } from 'react';
+
+export function Counter() {
+const [counter, setCounter] = useState(0);
+
+  function increment(){
+    setCounter(counter + 1);
+  }
+
+  return (
+    <div>
+      <h2>{ counter }</h2>
+      <button type="button" onClick={increment}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+Agora sim, ao clicar no botão **Increment** o valor do contador será alterado.
+
+
+
 ## 2.4 A imutabilidade no React
 
 ## 2.5 Fast Refresh no Webpack
