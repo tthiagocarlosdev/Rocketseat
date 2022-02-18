@@ -1351,6 +1351,107 @@ Agora pare a aplicação no terminal e execute `yarn dev` novamente. Agora ao mu
 
 ## 3.1 Estilização da listagem
 
+Apagar o arquivo **Counter.jsx**;
+
+Em **App.jsx** apagar a parte do **counter** deixando apenas o _***RepositoryList***_.
+
+```jsx
+import { RepositoryList } from './components/RepositoryList';
+
+import './styles/global.scss';
+
+export function App() {
+  return (
+    <RepositoryList/>
+  )
+}
+```
+
+Na pasta **styles** criar um novo arquivo denominado **repositories.scss**. 
+
+Em **RepositoryList.jsx** fazer a importação do arquivo **repositories.scss**.
+
+```jsx
+import { RepositoryItem } from "./RepositoryItem";
+
+import '../styles/repositories.scss';
+```
+
+
+
+===========XX===========XX===========XX===========XX===========XX===========XX===========
+
+**Obs**.: Minha aplicação estava apresentando o seguinte erro ao executar `yarn dev`:
+
+```shell
+Watchpack Error (watcher): Error: ENOSPC: System limit for number of file watchers reached
+```
+
+Este erro costuma acontecer com desenvolvedores Node.js, geralmente ao executar o comando "npm start". No meu caso, ocorreu ao executar o meu projeto em React com o comando "yarn dev"
+
+**SOLUÇÃO**
+
+Aumentar o limite de user watches no sistema operacional. Verificar o limite atual:
+
+```shell
+$ cat /proc/sys/fs/inotify/max_user_watches
+```
+
+Ajustar o novo limite no arquivo */etc/sysctl.conf*:
+
+```shell
+$ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
+O comando acima acrescentou a linha "fs.inotify.max_user_watches=524288" ao arquivo /etc/sysctl.conf e em seguida pediu ao kernel para recarregar as novas configurações. Verificar o novo limite:
+
+```shell
+$ cat /proc/sys/fs/inotify/max_user_watches
+```
+
+===========XX===========XX===========XX===========XX===========XX===========XX===========
+
+Voltando para a aplicação, em **repositories.scss** vamos começar a estilizar:
+
+```scss
+section.repository-list {
+  margin: 40px;
+
+  h1 {
+    margin-bottom: 16px;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      & + li {
+        margin-top: 20px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #444;
+        margin-top:8px;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 16px;
+        text-decoration: none;
+        color: #8257e6;
+      }
+    }
+  }
+}
+```
+
+
+
+
+
+
+
 ## 3.2 Utilizando o useEffect
 
 ## 3.3 Listando repositórios
