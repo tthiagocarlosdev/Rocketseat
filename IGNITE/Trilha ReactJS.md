@@ -1500,7 +1500,54 @@ useEffect dispara uma função quando algo acontecer na minha aplicação.
 
 ## 3.3 Listando repositórios
 
+Em **RepositoryList.jsx** delete a variável  **repository**:
 
+```jsx
+const repository = {
+  name: 'unform',
+  description: "Forms in React",
+  link: "https://github.com/unform/unform",
+}
+```
+
+Alteramos o **ul**:
+
+```jsx
+	<ul>
+        {repositories.map(repository => {
+          return <RepositoryItem repository={repository} />
+        })}        
+    </ul>
+```
+
+Em **RepositoryItem.jsx** mudar a referência do link:
+
+```jsx
+export function RepositoryItem (props) {
+  return (
+    <li>
+    <strong>{props.repository.name}</strong>
+    <p>{props.repository.description}</p>
+
+    <a href={props.repository.html_url}>
+      Acessar repositório
+    </a>
+  </li>
+  );
+}
+```
+
+Em **RepositoryList.jsx** adicionar a propriedade **key** no **map**:
+
+```jsx
+<ul>
+        {repositories.map(repository => {
+          return <RepositoryItem key={repository.name} repository={repository} />
+        })}        
+      </ul>
+```
+
+ 
 
 # 4 Usando TypeScript
 
