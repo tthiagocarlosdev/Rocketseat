@@ -260,7 +260,7 @@ function App() {
 }
 ```
 
-Mudar a extensão do arquivo **index.js** da pasta **src** para **index.jsx** que é o padrão do html dentro do JavaScript.
+Mudar a extensão do arquivo **index.js** da pasta **src** para **index.jsx** que é o padrão do **html** dentro do JavaScript.
 
 
 
@@ -334,7 +334,7 @@ Observar que o arquivo **bundle.js** na pasta **dist** agora está impossível d
 
 ## 1.6 Estrutura do ReactJS
 
-No arquivo **index.html** da pasta **public**, adicionar uma div com id root no body:
+No arquivo **index.html** da pasta **public**, adicionar uma **div** com **id root** no body:
 
 ```html
 <!DOCTYPE html>
@@ -375,7 +375,7 @@ No **index.html** adicionar um **script**:
 <script src="../dist/bundle.js"></script>
 ```
 
-No **index.jsx** importar o react:
+No **index.jsx** importar o **react**:
 
 ```javascript
 import React from 'react';
@@ -385,9 +385,9 @@ import { App } from './App'
 render(<h1>Test</h1>, document.getElementById('root'))
 ```
 
-Executar o webpack e abrir o index.html no browser.
+Executar o webpack e abrir o **index.html** no browser.
 
-A importação do react não precisa ser realizada em todo arquivo .html, portanto pode se excluir a linha abaixo do arquio **index.html**:
+A importação do react não precisa ser realizada em todo arquivo **.html**, portanto pode se excluir a linha abaixo do arquivo **index.html**:
 
 ```js
 import React from 'react';
@@ -408,7 +408,7 @@ module.exports = {
 
 Agora no **index.jsx** podemos renderizar o **App**, ao invés de código html:
 
-```js
+```jsx
 render(<App />, document.getElementById('root'))
 ```
 
@@ -443,13 +443,13 @@ module.exports = {
 
 ## 1.7 Servindo HTML estático
 
-Existe um plugin do webpack o qual injeta o arquivo JavaScript no nosso HTML. Para isso, no arquivo **index.html** exclua o **script**:
+Existe um plugin do webpack o qual injeta o arquivo **JavaScript** no nosso **HTML**. Para isso, no arquivo **index.html** exclua o **script**:
 
 ```html
 <script src="../dist/bundle.js"></script>
 ```
 
-No terminal na raiz da aplicação, instalar o html webpack plugin como uma dependência de desenvolvimento:
+No terminal na raiz da aplicação, instalar o **html webpack plugin** como uma dependência de desenvolvimento:
 
 ```shell
 $ yarn add html-webpack-plugin -D
@@ -510,7 +510,7 @@ Agora executar o webpack:
 $ yarn webpack
 ```
 
-Na pasta **dist** será criado o arquivo **index.html** o qual já terá o **scrip** azendo referência ao **bundle**. Abrir esse arquivo **index.html** no browser. Tudo isso serve para melhorar o fluxo da nossa aplicação.
+Na pasta **dist** será criado o arquivo **index.html** o qual já terá o **scrip** fazendo referência ao **bundle**. Abrir esse arquivo **index.html** no browser. Tudo isso serve para melhorar o fluxo da nossa aplicação.
 
 
 
@@ -522,7 +522,7 @@ No terminal, na raiz da aplicação, instalar o **dev-server**:
  $ yarn add webpack-dev-server -D
  ```
 
-No arquivo **webpack.config.js** fazer a configuração o **ev-server**:
+No arquivo **webpack.config.js** fazer a configuração do **dev-server**:
 
 ```js
 devServer: {
@@ -772,7 +772,7 @@ module.exports = {
 
 ## 1.11 Importando arquivos CSS
 
-Dentro da pasta **src** criar outra pasta denominada **styles**. Dentro de **styles** criar um arquivo denominado **global.css**.
+Dentro da pasta **src**, criar outra pasta denominada **styles**. Dentro de **styles** criar um arquivo denominado **global.css**.
 
 Em **global.css** fazer a seguinte configuração:
 
@@ -813,7 +813,7 @@ No terminal, na raiz da aplicação, instalar o **style-loader**  e o **css-load
 $ yarn add style-loader css-loader -D
 ```
 
-Em **App.jsx** importar o arquivo **global.css** e apagar o erro `throw **new** *Error*('Eita Giovana, o forninho caiu!')`:
+Em **App.jsx** importar o arquivo **global.css** e apagar o erro `throw new Error('Eita Giovana, o forninho caiu!')`:
 
 ```javascript
 import './styles/global.css';
@@ -893,9 +893,9 @@ body {
 
 ## 2.1 Primeiro componente React
 
-Componentes no React são como tags no **HTML**. São formas de encapsular uma quatidade de código dentro de um único elemento e esse elemento tem sua própria funcionalidade, estilização e estrutura. Componentes são formas de organizarmos a aplicação.
+**Componentes** no **React** são como tags no **HTML**. São formas de encapsular uma quatidade de código dentro de um único elemento e esse elemento tem sua própria funcionalidade, estilização e estrutura. **Componentes** são formas de organizarmos a aplicação.
 
-Componente no React é uma função com o nome que sempre começa com a primeira letra **maiúscula** e essa função devolve sempre um **HTML**. Exemplo:
+**Componente** no **React** é uma função com o nome que sempre começa com a **primeira letra maiúscula** e essa função devolve sempre um **HTML**. Exemplo:
 
 ```jsx
 export function App() {
@@ -970,7 +970,7 @@ body {
 }
 ```
 
-Em **RepositoryList.jsx** vamos criar uma variável e usar ela dentro do HTML. Dentro do HTML colocamos o nome da variável entre **{ }**. No caso abaixo criamos a variável **repositoryName**.
+Em **RepositoryList.jsx** vamos criar uma variável e usar ela dentro do **HTML**. Dentro do **HTML** colocamos o nome da variável entre **{ }**. No caso abaixo criamos a variável **repositoryName**.
 
 ```jsx
 const repositoryName = 'unform2';
@@ -995,9 +995,9 @@ export function RepositoryList() {
 
 ## 2.2 Propriedades no React
 
-Propriedades no React funcionam assim com atributos funcionam dentro de tags HTML. São informações, variáveis que podemos passar para um componente funcionar de forma diferente.
+**Propriedades** no **React** funcionam assim como **atributos** funcionam dentro de tags **HTML**. São informações, variáveis que podemos passar para um componente funcionar de forma diferente.
 
-Na pasta **components** crie um arquivo denominado **RepositoryItem.jsx**. Dentro deste arquivo vamos criar uma function retornando o primeiro <li/> do arquivo **RepositoryList.jsx**.
+Na pasta **components** crie um arquivo denominado **RepositoryItem.jsx**. Dentro deste arquivo vamos criar uma function retornando o primeiro **<li/>** do arquivo **RepositoryList.jsx**.
 
 ```jsx
 export function RepositoryItem () {
@@ -1014,7 +1014,7 @@ export function RepositoryItem () {
 }
 ```
 
-Em **RepositoryList.jsx** vamos deletar todo conteúdo dentro de **ul**, chamar **RepositoryItem** dentro de **ul**, fazer o import do arquivo **RepositoryItem** e apagar a variável **repositoryName**:
+Em **RepositoryList.jsx** vamos deletar todo conteúdo dentro de **ul**, chamar **RepositoryItem** dentro de **ul**, fazer o **import** do arquivo **RepositoryItem** e apagar a variável **repositoryName**:
 
 ```jsx
 import { RepositoryItem } from "./RepositoryItem";
@@ -1201,9 +1201,9 @@ let counter = 0;
 }
 ```
 
-Note que na aplicação, ao clicar no botão **Increment**, não aconteceu nada. Para que a variável sofra alteração, no React, temos que criar uma **variável estado**, a qual vai ser monitorada pelo React e a cada mudança ela será redenderizada com o valor atualizado.
+Note que na aplicação, ao clicar no botão **Increment**, não aconteceu nada. Para que a variável sofra alteração, no **React**, temos que criar uma **variável estado**, a qual vai ser monitorada pelo **React** e a cada mudança ela será redenderizada com o valor atualizado.
 
-Vamos fazer o **import** da **useState** do próprio react e colocá-la na função:
+Vamos fazer o **import** da **useState** do próprio **React** e colocá-la na função:
 
 ```jsx
 import { useState } from 'react';
@@ -1232,7 +1232,7 @@ Agora sim, ao clicar no botão **Increment** o valor do contador será alterado.
 
 ## 2.4 A imutabilidade no React
 
-Imutabilidade diz respeito quando temos uma variável e queremos adicionar um novo valor para ela. Porém em vez de fazer isso, criamos uma nova variável, colocamos todos os valores da variável anterior dentro dela mais onovo valor. Exemplo: Digamos que temos o array **A = [ 'abc', 'def', 'ghi' ]**. Agora queremos adicionar o valor **'jlk'** dentro dela. Como na imutabilidade o valor da variável não se altera, vamos criar uma nova variável e colocar todos os valores nela. **B = [...A, 'jkl' ]**.
+**Imutabilidade** diz respeito quando temos uma variável e queremos adicionar um novo valor para ela. Porém em vez de fazer isso, criamos uma nova variável, colocamos todos os valores da variável anterior dentro dela mais o novo valor. Exemplo: Digamos que temos o array **A = [ 'abc', 'def', 'ghi' ]**. Agora queremos adicionar o valor **'jlk'** dentro dela. Como na imutabilidade o valor da variável não se altera, vamos criar uma nova variável e colocar todos os valores nela. **B = [...A, 'jkl' ]**.
 
 Isso é o acontece quando usamos o **setCounter** no arquivo **Counter.jsx**. Ele cria uma nova variável **counter** que recebe a variável **counter** anterior mais 1.
 
@@ -1345,7 +1345,7 @@ module.exports = {
 };
 ```
 
-Agora pare a aplicação no terminal e execute `yarn dev` novamente. Agora ao mudar algo no código, só vai alterar aquilo em que você mexeu, deixando o resto da aplicaçãodo mesmo jeito.
+Agora pare a aplicação no terminal **Ctrl+c** e execute `yarn dev` novamente. Agora ao mudar algo no código, só vai alterar aquilo em que você mexeu, deixando o resto da aplicaçãodo mesmo jeito.
 
 # 3 Chamadas HTTP
 
@@ -1450,13 +1450,13 @@ section.repository-list {
 
 ## 3.2 Utilizando o useEffect
 
-Acessar a api de todos os repositórios no github.com:
+Acessar a **api** de todos os repositórios no github.com:
 
 ```http
 https://api.github.com/orgs/rocketseat/repos
 ```
 
-Em **RepositoryList.jsx** vamos criar um estado para armazenar uma listagem de repositórios:
+Em **RepositoryList.jsx** vamos criar um **estado** para armazenar uma listagem de repositórios:
 
 ```jsx
 import { useState, useEffect } from 'react';
@@ -1494,7 +1494,7 @@ export function RepositoryList() {
 }
 ```
 
-useEffect dispara uma função quando algo acontecer na minha aplicação.
+**useEffect** dispara uma função quando algo acontecer na minha aplicação.
 
 
 
@@ -1552,6 +1552,42 @@ Em **RepositoryList.jsx** adicionar a propriedade **key** no **map**:
 # 4 Usando TypeScript
 
 ## 4.1 Fundamentos do TypeScript
+
+**TypeScript* é um **super set**, que é  um conjunto de funcionalidades que é adicionado em cima de uma liguagem.
+
+O **TypeScript** permite ser adicionado tipagens, adicionar qual que é o formato das informações que eu estou esperando dentro dos argumentos da minha função ou qual é o formato das informações que eu estou esperando retorar de uma função.
+
+```tsx
+type User = {
+  name: string
+  email: string
+  address: {
+    city: string
+    state?: string
+  }
+}
+
+function showWelcomeMessage(user: User) {
+  return `Welcome ${user.name}, your e-mail is ${user.email}. Your city is ${user.address.city} and your state is ${user.address.state}`;
+}
+
+const user = {
+  name: 'John Doe',
+  email: 'john@doe.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+  }
+}
+
+const message = showWelcomeMessage(user);
+```
+
+
+
+Não precisamos tipar toda variável da nossa aplicação. O **TypeScript** tem algo chamado inferência de tipos. Ele consegue determinar qual é o tipo de variável na maioria dos casos.
+
+
 
 ## 4.2 TypeScript no ReactJS
 
