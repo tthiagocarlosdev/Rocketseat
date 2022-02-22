@@ -1591,6 +1591,234 @@ Não precisamos tipar toda variável da nossa aplicação. O **TypeScript** tem 
 
 ## 4.2 TypeScript no ReactJS
 
+Vamos instalar o Typescript em nossa aplicação. Na pasta raiz da aplicação:
+
+```shell
+$ yarn add typescript -D
+```
+
+Vamos inicializar o **TypeScript** na aplicação:
+
+```shell
+$ yarn tsc --init
+```
+
+Após iniciar o **TypeScript** na aplicação, o arquivo **tsconfig.json** será criado. É o arquivo de configuração do **TypeScript**. Acesse este arquivo, selecione o início dos comentários `/*`, digite **Ctrl+Shit+L**, depois aperte a tecla **end** do seu teclado e em seguida a tecla **Del** para deletar todos os comentários.
+
+Descomente a linha `// "lib": [],` e adicione a seguinte configuração:
+
+```json
+"lib": ["dom", "dom.iterable", "esnext"],
+```
+
+Descomente as seguintes linhas:
+
+```json
+"allowJs": true,
+```
+
+```json
+"allowSyntheticDefaultImports": true,
+```
+
+```json
+"skipLibCheck": true
+```
+
+```json
+"esModuleInterop": true,
+```
+
+```json
+"strict": true,
+```
+
+```json
+"forceConsistentCasingInFileNames": true,
+```
+
+```json
+"moduleResolution": "node",
+```
+
+```json
+"resolveJsonModule": true,
+```
+
+```json
+"isolatedModules": true,
+```
+
+```json
+"noEmit": true,
+```
+
+```json
+"jsx": "react-jsx",
+```
+
+Remova as linhas:
+
+```json
+"target": "es2016",
+```
+
+```json
+"module": "commonjs",
+```
+
+Remova agora todas as linhas que restaram comentadas.
+
+Depois do **object compilerOptions{ }** coloque uma vírgula e adicione a seguinte configuração:
+
+```json
+"include": ["src"]
+```
+
+A configuração do arquivo **tsconfig.json** será:
+
+```json
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,             
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}
+
+```
+
+ Agora vamos fazer a configuração do TypeScript dentro do **webpack.config.js**:
+
+No terminal, na pasta raiz da aplicação execute o comando abaixo para fazer o **babel** entender **TypeScript**:
+
+```shell
+$ yarn add @babel/preset-typescript -D
+```
+
+No arquivo **babel.config.js** adicionamos o preset-typescript:
+
+```js
+module.exports = {
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-typescript',
+    ['@babel/preset-react', {
+      runtime: 'automatic'
+    }]
+  ]
+}
+```
+
+No arquivo **webpack.config.js** vamos configurar que podemos ter arquivos tanto em jsx como em tsx em **module rules test**:
+
+```js
+module: {
+    rules: [
+      {
+        test:/\.(j|t)sx$/,
+```
+
+Em **resolve extensions**:
+
+```js
+resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
+```
+
+Em module.exports entry:
+
+```js
+entry: path.resolve(__dirname, 'src', 'index.tsx'),
+```
+
+**webpack.config.js** completo:
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
+module.exports = {
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
+  devServer: {
+    static: path.resolve(__dirname, 'public'),
+    hot: true,
+  },
+  plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public', 'index.html'),
+    })
+  ].filter(Boolean),
+  module: {
+    rules: [
+      {
+        test:/\.(j|t)sx$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              isDevelopment && require.resolve('react-refresh/babel')
+            ].filter(Boolean)
+          }
+        },
+      },
+      {
+        test:/\.scss$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      }
+    ],
+  }
+};
+```
+
+Na pasta **src** altere o formato de index.jsx para index.tsx. Ao acessar o **index.tsx** você perceberá que tem um erro. Este erro acontece porque o typeScript não lê bibliotecas de terceiros, nesse caso, do React. Para solucionar este problema, execute o comando abaixo na raiz da aplicação pelo terminal:
+
+```shell
+$ yarn add @types/react-dom -D
+```
+
+Caso aconteça de ter erro de tipos react, instale também:
+
+```shell
+$ yarn add @types/react -D
+```
+
+ Agora execute a aplicação:
+
+```shell
+$ yarn dev
+```
+
+
+
+
+
 ## 4.3 Componentes com TypeScript
 
 
