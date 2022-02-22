@@ -1875,5 +1875,19 @@ export function RepositoryList() {
 
 ## 5.1 Utilizando React DevTools
 
+Baixando a extensão **React Developer Tools**:
+
+```http
+https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
+```
+
+Clique no link acima e instale o ****React Developer Tools** em seu navegador.
+
+Para usar esta ferramenta, inspecione a página da aplicação (F12) e clique em **Components**.
+
+Temos também a ferramenta **Profiler**.
+
+
+
 ## 5.2 Finalização do módulo
 
