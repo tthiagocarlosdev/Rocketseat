@@ -1821,6 +1821,54 @@ $ yarn dev
 
 ## 4.3 Componentes com TypeScript
 
+Renomear **App.jsx** para **App.tsx**
+
+Renomear **RepositoryItem.jsx** para **RepositoryItem.tsx**. Observe que o parâmetro _***props**_ apresentou um erro na function RepositoryItem. 
+
+```tex
+O parâmetro 'props' implicitamente tem um tipo 'any'.ts(7006)
+```
+
+Agora vamos definir qual será o tipo do parâmetro e o que esperamos receber com ele usando TypeScript criando uma **interface**:
+
+```tsx
+interface RepositoryItemProps {
+  repository: {
+    name: string;
+    description: string;
+    html_url: string;
+  }
+}
+
+export function RepositoryItem (props: RepositoryItemProps) {
+  return (
+    <li>
+    <strong>{props.repository.name}</strong>
+    <p>{props.repository.description}</p>
+
+    <a href={props.repository.html_url}>
+      Acessar repositório
+    </a>
+  </li>
+  );
+}
+```
+
+Em **RepositoryList.jsx** alterar seu nome para **RepositoryList.tsx** e erros já vão aparecer.
+
+Vamos criar a interface:
+
+```tsx
+interface Repository {
+  name: string;
+  description: string;
+  html_url: string;
+}
+
+export function RepositoryList() {
+  const [repositories, setRepositories] = useState<Repository[]>([]);
+```
+
 
 
 # 5 Finalizando aplicação
