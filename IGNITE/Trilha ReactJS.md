@@ -1553,7 +1553,7 @@ Em **RepositoryList.jsx** adicionar a propriedade **key** no **map**:
 
 ## 4.1 Fundamentos do TypeScript
 
-**TypeScript* é um **super set**, que é  um conjunto de funcionalidades que é adicionado em cima de uma liguagem.
+**TypeScript** é um **super set**, que é  um conjunto de funcionalidades que é adicionado em cima de uma liguagem.
 
 O **TypeScript** permite ser adicionado tipagens, adicionar qual que é o formato das informações que eu estou esperando dentro dos argumentos da minha função ou qual é o formato das informações que eu estou esperando retorar de uma função.
 
