@@ -1891,3 +1891,4 @@ Temos também a ferramenta **Profiler**.
 
 ## 5.2 Finalização do módulo
 
+Revisão dos assuntos.
