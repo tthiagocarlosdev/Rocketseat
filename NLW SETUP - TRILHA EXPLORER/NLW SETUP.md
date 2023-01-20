@@ -304,6 +304,355 @@ _A cascata perde prioridade e é priorizada a especificidade da declaração._
 
   Conteúdo, Largura, Altura, Borda, Preenchimento (espaço interno), Espaçamento (espaço externo).
 
+## Aula 3 - O poder do JavaScript
+
+## Algoritmos e Lógica de programação
+
+- ### O que é programar?
+
+  Programação nada mais é do que ensinar o computador
+
+## Ensinar o computador
+
+- ### Algoritmos
+
+  Sequência de passos, conjunto de regras
+
+- ### Lógica de programação
+
+  Maneira de pensar
+
+- ### Sintaxe
+
+  Maneira correta de escrever
+
+## JavaScript
+
+A linguagem da WEB
+
+## O que é?
+
+- ### Linguagem de programação
+
+  Interpretada e executada pelos navegadores.
+
+- ### A inteligência da tríade
+
+  HTML é a estrutura, CSS é a beleza e JS é a inteligência.
+
+- ### Não é JAVA
+
+- Apesar do nome ser semelhante, são linguagens diferentes.
+
+## Por que JS?
+
+- ### Aplicativos
+
+  Para WEB, Desktop (Electron) e Mobile (React Native)
+
+- ### Empresas famosas
+
+  Instagram, Google, Netflix, TikTok...
+
+- ### Moderna e Viva
+
+  Comunidade e linguagem que cresce cada vez mais
+
+## Instruções e sintaxe
+
+Toda linguagem é escrita com esses 2 princípios
+
+- ### Instruções (declarações)
+
+  Ordens ao computador
+
+- ### Sintaxe
+
+  Maneira correta de escrever
+
+Existem __palavras reservadas__ da linguagem. Elas são responsáveis em dar significado a diversas instruções.
+
+## Executando JavaScript
+
+Podemos executar diretamente no Navegador
+
+- ### Ferramenta DevTools
+
+  Apertando o atalho F12 no seu teclado
+
+- ### Plataformas online
+
+  fronteditor.dev
+
+  codepen.io
+
+- ### Projeto no computador
+
+```html
+<script src="./script.js"></script>
+```
+
+## Variáveis e Tipos de dados
+
+Facilitando as informações
+
+## Variáveis
+
+Uma caixinha onde guardamos um tipo de dado para usar mais tarde.
+
+## Tipos de dados
+
+Informações que podem ser em __textos__, __números__, __booleanos__ (valores lógicos:: verdadeiro ou falso) ou dados mais __estruturados__.
+
+```js
+// declaro e atribuo valor
+let boasVindas = 'Fala, Dev!';
+//reatribuo valor
+boasVindas = 'Fala, Dev! Tudo beleza?!'
+// constante não pode mudar o valor
+const serHumano = true;
+serHumano = false // Erro!
+```
+
+## Funções
+
+Agrupando e reutilizando o código
+
+- Agrupamento de código
+- Reuso de código
+- Mini programas dentro do programa maior
+- Toda linguagem oferece muitas opções
+
+```js
+//usando uma função
+alert('Fala, Dev!)
+// criando uma função
+function alert(text){
+    return text
+}
+```
+
+## Objetos
+
+É tudo sobre Objetos
+
+## Tudo é objeto
+
+- ### Atributos
+
+  São as propriedades de um objeto
+
+- ### Métodos
+
+  São as funcionalidades de um objeto
+
+```js
+// criando um objeto
+const celular = {
+    cor: 'preto',
+    ligar: function(){}
+}
+// usando um objeto
+celular.cor // preto
+celular.ligar() // executa função
+```
+
+## DOM
+
+Document Object Model
+
+## Document Object Model
+
+É a modelagem dos nossos elementos HTML em Objeto JavaScript
+
+## Document
+
+Posso controlar minha página, meu documento HTML, pelo JavaScript, através do objeto __document__.
+
+```javascript
+document // objeto que existe em todo navegador
+.querySelector('a') // seleciona a tag a
+.click() // dá a ordem de clicar na tag a
+```
+
+### Códigos após a aula 03
+
+- ### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Roboto+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habits</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="./assets/logo.svg" alt="Logo marca do aplicativo Habits" />
+      <button>
+        <img src="./assets/plus.svg" alt="ícone sinal de mais roxo" />
+        <div>Registraro meu dia</div>
+      </button>
+    </header>
+
+    <form id="form-habits">
+      <div class="habits">
+        <div class="habit" data-name="run" >🏃🏻‍♂️</div>
+        <div class="habit" data-name="water">💧</div>
+        <div class="habit" data-name="food">🍎</div>
+        <div class="habit" data-name="journal">📕</div>
+        <div class="habit" data-name="takePills">💊</div>
+      </div>
+
+      <div class="days"></div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/gh/maykbrito/libs/NLWSetup/source/NLWSetup.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
+```
+
+- ### CSS
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #09090a;
+  color: white;
+
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px;
+  position: fixed;
+  width: 100%;
+  background-color: #09090a;
+}
+
+button {
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid #8b5cf6;
+  background-color: transparent;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+}
+
+#form-habits {
+  display: flex;
+  padding: 191px 48px 48px;
+  width: fit-content;
+}
+
+.habits {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.habit {
+
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.days {
+  display: flex;
+  gap:48px;
+  margin-left: 32px;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.day div {
+  margin-bottom: 8px;
+  font-family: 'Roboto Mono';
+  font-size: 20px;
+  line-height: 125%;
+  text-align: center;
+  color: #A1A1AA;
+}
+
+input {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 64px;
+  height: 64px;
+
+  border: 2px solid #27272A;
+  border-radius: 8px;
+  background: #18181B;
+}
+
+input:checked{
+  background: #8B5CF6;
+  border: 2px solid #A78BFA;
+}
+
+@media (max-width: 570px) {
+  button div {
+    display:none;
+  }
+}
+```
+
+- ### JavaScript
+
+```js
+const form = document.querySelector("#form-habits")
+const nlwSetup = new NLWSetup(form)
+
+const data = {
+  run: ["01-01", "01-02", "01-06", "01-07", "01-08"],
+  takePills: ["01-03"],
+  journal: ["01-02"],
+}
+
+nlwSetup.setData(data)
+nlwSetup.load()
+```
+
+## Aula 04 - Profissionalizando o projeto
+
+
+
 
 
 
