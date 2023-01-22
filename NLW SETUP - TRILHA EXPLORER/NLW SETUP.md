@@ -651,7 +651,100 @@ nlwSetup.load()
 
 ## Aula 04 - Profissionalizando o projeto
 
+- ### JavaScript
 
+```javascript
+const form = document.querySelector("#form-habits")
+const nlwSetup = new NLWSetup(form)
+const button = document.querySelector("header button")
+
+button.addEventListener("click", add)
+form.addEventListener("change", save)
+
+function add() {
+  const today = new Date().toLocaleString("pt-br").slice(0, -5)
+  const dayExists = nlwSetup.dayExists(today)
+
+  if (dayExists) {
+    alert("Dia já incluso!")
+    return
+  }
+
+  alert("Adicionado com sucesso!")
+  nlwSetup.addDay(today)
+}
+
+function save(){
+  localStorage.setItem("NLWSetup@habits", JSON.stringify(nlwSetup.data))
+}
+
+const data = JSON.parse(localStorage.getItem("NLWSetup@habits")) || {}
+nlwSetup.setData(data)
+nlwSetup.load()
+
+```
+
+## Aula 05 - O próximo nível
+
+## Git
+
+## O que é Git?
+
+- ### Controle de versão
+
+  Histórico do projeto
+
+- ### Linha do tempo
+
+## Conceitos básicos
+
+- ### Repository
+
+  Local onde ficará o histórico do seu projeto
+
+- ### Branch
+
+  Linha do tempo
+
+- ### Commit
+
+  Pontos na história
+
+- ### Stage
+
+  Preparação do que será enviado para o ponto na história
+
+### Comandos
+
+```sh
+// inicia o git (repositório) no seu projeto
+git init 
+
+// adiciona todos os arquivos modificados, ao stage
+git add . 
+
+// cria e descreve um ponto na história
+git commit -m "message here" 
+
+// envia alterações para o repositório remoto
+git push
+```
+
+## Github
+
+## O que é ?
+
+- ### Plataforma online para colocar seus códigos
+
+  através do Git
+
+- ### Trabalhar em diversos projetos
+
+  Profissional para colaborar em projetos ou trabalhar com times
+
+- ### Perfil para mostrar seu trabalho
+
+  Portfólio
 
 
 
